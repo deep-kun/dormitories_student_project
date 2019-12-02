@@ -1,0 +1,49 @@
+﻿<div *ngIf="floor">
+    <h2> Поверх №{{floor.number}}</h2>
+    <div>
+        <h3>Блоки</h3>
+        <button type="button" class="btn btn-danger" [routerLink]="['../../../administrator-home/blockAdd',floor.id]">Додати блок</button>
+        <table *ngIf="floor.blocks?.length != 0" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Назва блоку</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let block of floor.blocks">
+                    <td class="col-md-10">{{block.name}}</td>
+                    <td class="col-md-1"><button type="button" class="btn btn-info" [routerLink]="['../../blockDetails',block.id]">Детальніше</button></td>
+                    <td class="col-md-1"><button type="button" (click)="deleteBlockById(block.id)" class="btn btn-warning" disabled>Видалити</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h3>Кімнати</h3>
+        <button type="button" class="btn btn-danger" [routerLink]="['../../../administrator-home/roomAdd/floor',floor.id]">Додати кімнату</button>
+        <table *ngIf="floor.rooms?.length != 0" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Назва кімнати</th>
+                    <th>Загальна кількість місць</th>
+                    <th>Вільна кількість місць</th>
+                    <th>Факультет</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let room of floor.rooms">
+                    <td class="col-md-1">{{room.name}}</td>
+                    <td class="col-md-2">{{room.totalPlaces}}</td>
+                    <td class="col-md-2">{{room.freePlaces}}</td>
+                    <td class="col-md-5">{{room.faculty?.name}}</td>
+                    <td class="col-md-1"><button type="button" class="btn btn-info" [routerLink]="['../../roomDetails',room.id]">Детальніше</button></td>
+                    <td class="col-md-1"><button type="button" (click)="deleteRoomById(room.id)" class="btn btn-warning" disabled>Видалити</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

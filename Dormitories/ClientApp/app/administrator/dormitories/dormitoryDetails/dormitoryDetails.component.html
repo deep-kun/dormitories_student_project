@@ -1,0 +1,28 @@
+﻿<br />
+<div class="panel panel-default" *ngIf="dormitory">
+    <div class="panel-heading"><h3>Гуртожиток №{{dormitory.number}}</h3></div>
+    <div class="panel-body">
+        <b>Номер: </b>{{dormitory.number}}<br />
+        <b>Адрес: </b>{{dormitory.address}}<br />
+        <b>Комендант: </b>{{dormitory.comendant.fullName}}<br />
+        <b>Опис: </b>{{dormitory.description}}<br />
+    </div>
+</div>
+<br />
+<button *ngIf="dormitory" type="button" class="btn btn-danger" [routerLink]="['../../../administrator-home/floorAdd',dormitory.id]">Додати поверх</button>
+<table class="table table-hover" *ngIf="dormitory">
+    <thead>
+        <tr>
+            <th>Номер поверху</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let floor of dormitory.floors">
+            <td class="col-md-10">{{floor.number}}</td>
+            <td class="col-md-1"><button type="button" class="btn btn-info" [routerLink]="['../../floorDetails',floor.id]">Детальніше</button></td>
+            <td class="col-md-1"><button type="button" (click)="deleteFloorById(floor.Id)" class="btn btn-warning" disabled>Видалити</button></td>
+        </tr>
+    </tbody>
+</table>

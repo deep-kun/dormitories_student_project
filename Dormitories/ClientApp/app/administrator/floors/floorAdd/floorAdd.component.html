@@ -1,0 +1,13 @@
+﻿<h4 class="text-center">Додати новий поверх</h4>
+<div class="col-md-8 col-md-offset-2">
+    <form name="form" (ngSubmit)="f.form.valid && Add()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !Number.valid }">
+            <label for="Number">Номер поверху</label>
+            <input type="text" class="form-control" name="Number" pattern="[0-9]{1,2}" [(ngModel)]="floor.number" #Number="ngModel" required />
+            <div *ngIf="f.submitted && !Number.valid" class="help-block">Номер поверху має бути від 1 до 12</div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default">Додати</button>
+        </div>
+    </form>
+</div>

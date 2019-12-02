@@ -1,0 +1,32 @@
+﻿<h4 class="text-center">Додати новий гуртожиток</h4>
+
+<div class="col-md-8 col-md-offset-2">
+    <form name="form" (ngSubmit)="f.form.valid && Add()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !Description.valid }">
+            <label for="Description">Опис *</label>
+            <input type="text" class="form-control" name="Description" minlength="5" [(ngModel)]="dormitory.description" #Description="ngModel" required />
+            <div *ngIf="f.submitted && !Description.valid" class="help-block">Довжина опису має бути більша 5 символів</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !Address.valid }">
+            <label for="Address">Адреса *</label>
+            <input type="text" class="form-control" name="Address" minlength="10" pattern="вулиця .+" [(ngModel)]="dormitory.address" #Address="ngModel" required />
+            <div *ngIf="f.submitted && !Address.valid" class="help-block">Довжина назви вулиці має бути більша 9 символів і починатися з "вулиця"</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !Number.valid }">
+            <label for="Number">Номер гуртожитку *</label>
+            <input type="text" class="form-control" name="Number" pattern="[0-9]{1,2}" [(ngModel)]="dormitory.number" #Number="ngModel" required />
+            <div *ngIf="f.submitted && !Number.valid" class="help-block">Номер гуртожитку має бути від 1 до 99</div>
+        </div>
+        <div class="form-group" *ngIf="administrators" [ngClass]="{ 'has-error': f.submitted && !ComendantId.valid }">
+            <label>Комендант *</label>
+            <select [(ngModel)]="dormitory.comendant.id" class="form-control" name="ComendantId" #ComendantId="ngModel" required>
+                <option *ngFor="let administrator of administrators" [attr.value]="administrator.id">{{administrator.fullName}}</option>
+            </select>
+            <div *ngIf="f.submitted && !ComendantId.valid" class="help-block">Виберіть факультет із списку</div>
+        </div>
+        <div class="form-group">
+            * <label style="color: red;">- необхідне для заповнення</label><br>
+            <button class="btn btn-default">Додати</button>
+        </div>
+    </form>
+</div>

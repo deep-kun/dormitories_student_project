@@ -1,0 +1,25 @@
+﻿<h3 style="text-align: center;">Гуртожитки</h3>
+<table class="table table-hover" *ngIf="dormitories">
+    <thead>
+    <tr>
+        <th>Номер</th>
+        <th>Опис</th>
+        <th>Адреса</th>
+        <th>Комендант</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let dormitory of dormitories">
+        <td class="col-md-1">{{dormitory.number}}</td>
+        <td class="col-md-4">{{dormitory.description}}</td>
+        <td class="col-md-2">{{dormitory.address}}</td> 
+        <td class="col-md-2">{{dormitory.comendant.fullName}}</td>
+        <td class="col-md-1"><button type="button" class="btn btn-info" [routerLink]="['../../administrator-home/dormitoryDetails',dormitory.id]">Детальніше</button></td>
+        <td class="col-md-1"><button type="button" class="btn btn-success" [routerLink]="['administrator-home/dormitoryDetails',2]" disabled>Редагувати</button></td>
+        <td class="col-md-1"><button type="button" (click)="delete(dormitory.Id)" class="btn btn-warning" disabled>Видалити</button></td>
+    </tr>
+    </tbody>
+</table>

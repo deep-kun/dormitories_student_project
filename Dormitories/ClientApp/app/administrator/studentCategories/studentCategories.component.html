@@ -1,0 +1,19 @@
+﻿<h4 class="text-center">Категорії</h4>
+<table class="table table-hover" *ngIf="studentCategories">
+    <thead>
+        <tr>
+            <th>Опис</th>
+            <th>Пріоритет</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let studentCategory of studentCategories">
+            <td class="col-md-8">{{studentCategory.description}}</td>
+            <td class="col-md-2">{{studentCategory.priority}}</td>
+            <td class="col-md-1"><button type="button" class="btn btn-success" [routerLink]="['../../administrator-home/studentCategoryEdit',studentCategory.id]" disabled>Редагувати</button></td>
+            <td class="col-md-1"><button type="button" (click)="delete(studentCategory.Id)" class="btn btn-warning" disabled>Видалити</button></td>
+        </tr>
+    </tbody>
+</table>

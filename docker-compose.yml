@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  dormitories:
+    image: dormitories
+    build:
+      context: .
+      dockerfile: Dormitories\Dockerfile

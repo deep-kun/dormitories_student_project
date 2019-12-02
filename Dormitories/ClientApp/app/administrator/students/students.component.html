@@ -1,0 +1,36 @@
+﻿<h4 class="text-center">Студенти</h4>
+
+<table class="table table-hover" *ngIf="students">
+    <thead>
+    <tr>
+        <th>ПІБ</th>
+        <th>Факультет</th>
+        <th>Пошта</th>
+        <th>Номер телефону</th>
+        <th>Ім'я користувача</th>
+        <th>Номер студентського</th>
+        <th>Група</th>
+        <th>Кімната</th>
+        <th>Рік навчання</th>
+        <th>Категорія студента</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let student of students">
+        <td class="col-md-1">{{student.fullName}}</td>
+        <td class="col-md-1">{{student.faculty?.name}}</td>
+        <td class="col-md-1">{{student.email}}</td>
+        <td class="col-md-1">{{student.phoneNumber}}</td>
+        <td class="col-md-1">{{student.user?.userName}}</td>
+        <td class="col-md-1">{{student.studentCardId}}</td>
+        <td class="col-md-1">{{student.group?.name}}</td>
+        <td class="col-md-1">{{student.room?.name}}</td>
+        <td class="col-md-1">{{student.studyYear}}</td>
+        <td class="col-md-1">{{student.studentCategory?.description}}</td>
+        <td class="col-md-1"><button type="button" class="btn btn-success" [routerLink]="['../../administrator-home/studentEdit',student.id]" disabled>Редагувати</button></td>
+        <td class="col-md-1"><button type="button" (click)="delete(student.id)" class="btn btn-info" disabled>Видалити</button></td>
+    </tr>
+    </tbody>
+</table>

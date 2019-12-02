@@ -1,0 +1,16 @@
+﻿<div *ngIf="block">
+    <h2 style="text-align:center;"> Блок - {{block.name}}</h2>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+         viewBox="0 0 5000 2000" preserveAspectRatio="none" width="100%" height="100%">
+        <!-- UP -->
+        <polygon (click)="alertInfo('Коридор')" points="1200,300 3900,300 3900,2000 1200,2000" style="fill:gray;stroke:purple;stroke-width:10;cursor:pointer" /><!-- corridor -->
+
+        <polygon (click)="openRoom(block.rooms[0].id)" points="1200,300 2550,300 2550,1300 2000,1300 2000,1600 1200,1600" style="fill:lightgrey;stroke:purple;stroke-width:10;cursor:pointer" /><!-- room 1 -->
+        <text x="1700" y="750" font-family="Verdana" font-size="100" fill="black">{{block.rooms[0].name}}</text>
+        <polygon (click)="openRoom(block.rooms[1].id)" points="2550,300 3900,300 3900,1300 2550,1300 " style="fill:lightgrey;stroke:purple;stroke-width:10;cursor:pointer" /><!-- room 2 -->
+        <text x="3200"s y="750" font-family="Verdana" font-size="100" fill="black">{{block.rooms[1].name}}</text>
+        <polygon (click)="alertInfo('Ванна кімната')" points="1200,1600 2000,1600 2000,2000 1200,2000" style="fill:lightblue;stroke:purple;stroke-width:10;cursor:pointer" /><!-- shower room -->
+        <polygon (click)="alertInfo('Туалет')" points="3400,1300 3900,1300 3900,2000 3400,2000" style="fill:lightblue;stroke:purple;stroke-width:10;cursor:pointer" /><!-- WC -->
+    </svg>
+
+</div>

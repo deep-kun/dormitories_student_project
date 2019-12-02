@@ -1,0 +1,19 @@
+﻿<h4 class="text-center">Додати нову категорії студента</h4>
+
+<div class="col-md-8 col-md-offset-2">
+    <form name="form" (ngSubmit)="f.form.valid && Add()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !Description.valid }">
+            <label for="Description">Опис</label>
+            <input type="text" class="form-control" name="Description" minlength="5" [(ngModel)]="studentCategory.description" #Description="ngModel" required />
+            <div *ngIf="f.submitted && !Description.valid" class="help-block">Довжина опису має бути більша 5 символів</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !Priority.valid }">
+            <label for="Priority">Значення пріоритету</label>
+            <input type="text" class="form-control" name="Priority" pattern="[0-9]{1,3}" [(ngModel)]="studentCategory.priority" #Priority="ngModel" required />
+            <div *ngIf="f.submitted && !Priority.valid" class="help-block">Пріоритет має бути від 0 до 999</div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default">Додати</button>
+        </div>
+    </form>
+</div>

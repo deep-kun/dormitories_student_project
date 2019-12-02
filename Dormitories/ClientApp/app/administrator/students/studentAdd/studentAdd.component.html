@@ -1,0 +1,57 @@
+﻿<h4 class="text-center">Додати нового студента</h4>
+
+<div class="col-md-8 col-md-offset-2">
+    <form name="form" (ngSubmit)="f.form.valid && Add()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !FullName.valid }">
+            <label for="FullName">ПІБ *</label>
+            <input type="text" class="form-control" name="FullName" minlength="10" [(ngModel)]="student.fullName" #FullName="ngModel" required />
+            <div *ngIf="f.submitted && !FullName.valid" class="help-block">Довжина опису має бути більша 10 символів</div>
+        </div>
+        <div class="form-group" *ngIf="faculties" [ngClass]="{ 'has-error': f.submitted && !FacultyId.valid }">
+            <label>Факультет *</label>
+            <select [(ngModel)]="student.faculty.id" class="form-control" name="FacultyId" #FacultyId="ngModel" required>
+                <option *ngFor="let faculty of faculties" [attr.value]="faculty.id">{{faculty.name}}</option>
+            </select>
+            <div *ngIf="f.submitted && !FacultyId.valid" class="help-block">Виберіть факультет із списку</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !Email.valid }">
+            <label for="Email">Пошта *</label>
+            <input type="email" class="form-control" name="Email" minlength="10" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [(ngModel)]="student.email" #Email="ngModel" required />
+            <div *ngIf="f.submitted && !Email.valid" class="help-block">Довжина електронної пошти має бути більша 9 символів і містити "@"</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !PhoneNumber.valid }">
+            <label for="PhoneNumber">Номер телефону *</label>
+            <input type="text" class="form-control" name="PhoneNumber" pattern="\+380.+" [(ngModel)]="student.phoneNumber" #PhoneNumber="ngModel" required />
+            <div *ngIf="f.submitted && !PhoneNumber.valid" class="help-block">Номер телефону має починатися з "+380" і мати довжину 13 символів</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !StudentCardId.valid }">
+            <label for="StudentCardId">Номер студентського *</label>
+            <input type="text" class="form-control" name="StudentCardId" pattern="\d{5,10}C$" [(ngModel)]="student.studentCardId" #StudentCardId="ngModel" required />
+            <div *ngIf="f.submitted && !StudentCardId.valid" class="help-block">Двжина номера студентського має бути від 5 до 10 цифр і мати закінчення англійської літери "С"</div>
+        </div>
+        <div class="form-group" *ngIf="groups" [ngClass]="{ 'has-error': f.submitted && !GroupId.valid }">
+            <label>Група</label>
+            <select [(ngModel)]="student.group.id" class="form-control" name="GroupId" #GroupId="ngModel">
+                <option *ngFor="let group of groups" [attr.value]="group.id">{{group.name}}</option>
+            </select>
+            <div *ngIf="f.submitted && !GroupId.valid" class="help-block">Виберіть групу із списку</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !StudyYear.valid }">
+            <label for="StudyYear">Рік навчання *</label>
+            <input type="text" class="form-control" name="StudyYear" pattern="[1-9]{1}" [(ngModel)]="student.studyYear" #StudyYear="ngModel" required />
+            <div *ngIf="f.submitted && !StudyYear.valid" class="help-block">Рік навчання має бути від 1 до 9</div>
+        </div>
+
+        <div class="form-group" *ngIf="studentCategories" [ngClass]="{ 'has-error': f.submitted && !StudentCategoryId.valid }">
+            <label>Категорія студента *</label>
+            <select [(ngModel)]="student.studentCategory.id" class="form-control" name="StudentCategoryId" #StudentCategoryId="ngModel" required>
+                <option *ngFor="let studentCategory of studentCategories" [attr.value]="studentCategory.id">{{studentCategory.description}}</option>
+            </select>
+            <div *ngIf="f.submitted && !StudentCategoryId.valid" class="help-block">Виберіть категорію студента із списку</div>
+        </div>
+        <div class="form-group">
+            * <label style="color: red;">- необхідне для заповнення</label><br>
+            <button class="btn btn-default">Додати</button>
+        </div>
+    </form>
+</div>

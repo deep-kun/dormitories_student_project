@@ -1,0 +1,24 @@
+﻿<div *ngIf="block">
+    <h2> Блок - {{block.name}}</h2>
+    <h3>Кімнати</h3>
+    <table *ngIf="block.rooms?.length != 0" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Назва кімнати</th>
+                <th>Загальна кількість місць</th>
+                <th>Вільна кількість місць</th>
+                <th>Факультет</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let room of block.rooms">
+                <td class="col-md-1">{{room.name}}</td>
+                <td class="col-md-2">{{room.totalPlaces}}</td>
+                <td class="col-md-2">{{room.freePlaces}}</td>
+                <td class="col-md-6">{{room.faculty?.name}}</td>
+                <td class="col-md-1"><button type="button" class="btn btn-info" [routerLink]="['../../roomDetails',room.id]">Детальніше</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

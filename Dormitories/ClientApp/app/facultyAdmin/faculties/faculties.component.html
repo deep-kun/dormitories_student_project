@@ -1,0 +1,13 @@
+﻿<h4 class="text-center">Факультети</h4>
+<table class="table table-hover" *ngIf="faculties">
+    <thead>
+        <tr>
+            <th>Назва Факультету</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let faculty of faculties">
+            <td class="col-md-12">{{faculty.name}}</td>
+        </tr>
+    </tbody>
+</table>

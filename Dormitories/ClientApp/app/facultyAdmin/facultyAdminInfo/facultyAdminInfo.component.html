@@ -1,0 +1,17 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <blockquote *ngIf="administrator" style="font-size: small;">
+                <p><b>ПІБ : </b>{{administrator.fullName}}</p>
+                <p *ngIf="administrator.faculty"><b>Факультет : </b>{{administrator.faculty.name}}</p>
+                <p><b>Електронна пошта : </b>{{administrator.email}} </p>
+                <p><b>Номер телефона : </b>{{administrator.phoneNumber}}</p>
+                <p *ngIf="administrator.user"><b>Логін : </b>{{administrator.user.username}}</p>
+            </blockquote>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary">Змінити пароль</button><br />
+            <button class="btn btn-primary">Змінити персональну інформацію</button>
+        </div>
+    </div>
+</div>

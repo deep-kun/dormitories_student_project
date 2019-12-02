@@ -1,0 +1,185 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\app\administrator\Administrator.ts" />
+    <None Remove="ClientApp\app\administrator\administratorHome.component.ts" />
+    <None Remove="ClientApp\app\administrator\administratorInfo\administratorInfo.component.ts" />
+    <None Remove="ClientApp\app\administrator\blocks\blockAdd\blockAdd.component.ts" />
+    <None Remove="ClientApp\app\administrator\blocks\blockDetails\blockDetails.component.ts" />
+    <None Remove="ClientApp\app\administrator\blocks\blockVisualization\blockDetails.component.ts" />
+    <None Remove="ClientApp\app\administrator\blocks\blockVisualization\dormitory8\2Rooms\blockVisualization2Rooms.component.ts" />
+    <None Remove="ClientApp\app\administrator\dormitories\dormitories.component.ts" />
+    <None Remove="ClientApp\app\administrator\dormitories\dormitoryAdd\dormitoryAdd.component.ts" />
+    <None Remove="ClientApp\app\administrator\dormitories\dormitoryDetails\dormitoryDetails.component.ts" />
+    <None Remove="ClientApp\app\administrator\dormitories\dormitoryEdit\dormitoryEdit.component.ts" />
+    <None Remove="ClientApp\app\administrator\faculties\faculties.component.ts" />
+    <None Remove="ClientApp\app\administrator\faculties\facultyAdd\facultyAdd.component.ts" />
+    <None Remove="ClientApp\app\administrator\faculties\facultyEdit\facultyEdit.component.ts" />
+    <None Remove="ClientApp\app\administrator\floors\floorAdd.component.ts" />
+    <None Remove="ClientApp\app\administrator\floors\floorDetails\floorDetails.component.ts" />
+    <None Remove="ClientApp\app\administrator\floors\floorVisualization\dormitory8\floorVisualization.component.ts" />
+    <None Remove="ClientApp\app\administrator\groups\groupAdd\groupAdd.component.ts" />
+    <None Remove="ClientApp\app\administrator\groups\groupEdit\groupEdit.component.ts" />
+    <None Remove="ClientApp\app\administrator\groups\groups.component.ts" />
+    <None Remove="ClientApp\app\dormitoryAdmin\block\blockDetails\blockDetails.component.ts" />
+    <None Remove="ClientApp\app\dormitoryAdmin\faculties\faculties.component.ts" />
+    <None Remove="ClientApp\app\dormitoryAdmin\floor\floorDetails\floorDetails.component.ts" />
+    <None Remove="ClientApp\app\dormitoryAdmin\groups\groups.component.ts" />
+    <None Remove="ClientApp\app\dormitoryAdmin\room\roomDetails\roomDetails.component.ts" />
+    <None Remove="ClientApp\app\dormitoryAdmin\studentCategories\studentCategories.component.ts" />
+    <None Remove="ClientApp\app\facultyAdmin\blocks\blockDetails\blockDetails.component.ts" />
+    <None Remove="ClientApp\app\facultyAdmin\dormitories\dormitories.component.ts" />
+    <None Remove="ClientApp\app\facultyAdmin\dormitories\dormitoryDetails\dormitoryDetails.component.ts" />
+    <None Remove="ClientApp\app\facultyAdmin\faculties\faculties.component.ts" />
+    <None Remove="ClientApp\app\facultyAdmin\floors\floorDetails\floorDetails.component.ts" />
+    <None Remove="ClientApp\app\facultyAdmin\groups\groups.component.ts" />
+    <None Remove="ClientApp\app\facultyAdmin\rooms\roomDetails\roomDetails.component.ts" />
+    <None Remove="ClientApp\app\facultyAdmin\studentCategories\studentCategories.component.ts" />
+    <None Remove="ClientApp\app\facultyAdmin\students\students.component.ts" />
+    <None Remove="ClientApp\app\log\Log.ts" />
+    <None Remove="ClientApp\app\administrator\rooms\roomAddForBlock\roomAdd.component.ts" />
+    <None Remove="ClientApp\app\administrator\rooms\roomAddForFloor\roomAdd.component.ts" />
+    <None Remove="ClientApp\app\administrator\rooms\roomDetails\roomDetails.component.ts" />
+    <None Remove="ClientApp\app\administrator\rooms\roomSettling\roomSettling.component.ts" />
+    <None Remove="ClientApp\app\administrator\studentCategories\studentCategories.component.ts" />
+    <None Remove="ClientApp\app\administrator\studentCategories\studentCategoryAdd\studentCategoryAdd.component.ts" />
+    <None Remove="ClientApp\app\administrator\studentCategories\studentCategoryEdit\studentCategoryEdit.component.ts" />
+    <None Remove="ClientApp\app\administrator\students\studentAdd\studentAdd.component.ts" />
+    <None Remove="ClientApp\app\administrator\students\studentEdit\studentEdit.component.ts" />
+    <None Remove="ClientApp\app\administrator\students\students.component.ts" />
+    <None Remove="ClientApp\app\app.component.ts" />
+    <None Remove="ClientApp\app\app.module.ts" />
+    <None Remove="ClientApp\app\block\Block.ts" />
+    <None Remove="ClientApp\app\dormitoryAdmin\dormitoryAdminHome.component.ts" />
+    <None Remove="ClientApp\app\dormitoryAdmin\dormitoryAdminInfo\dormitoryAdminInfo.component.ts" />
+    <None Remove="ClientApp\app\dormitory\Dormitory.ts" />
+    <None Remove="ClientApp\app\facultyAdmin\facultyAdminHome.component.ts" />
+    <None Remove="ClientApp\app\facultyAdmin\facultyAdminInfo\facultyAdminInfo.component.ts" />
+    <None Remove="ClientApp\app\faculty\Faculty.ts" />
+    <None Remove="ClientApp\app\floor\Floor.ts" />
+    <None Remove="ClientApp\app\group\Group.ts" />
+    <None Remove="ClientApp\app\home\home.component.ts" />
+    <None Remove="ClientApp\app\login\login.component.ts" />
+    <None Remove="ClientApp\app\roles\Role.ts" />
+    <None Remove="ClientApp\app\room\Room.ts" />
+    <None Remove="ClientApp\app\studentCategory\studentCategory.ts" />
+    <None Remove="ClientApp\app\student\Student.ts" />
+    <None Remove="ClientApp\app\student\studentHome.component.ts" />
+    <None Remove="ClientApp\app\student\studentInfo\studentInfo.component.ts" />
+    <None Remove="ClientApp\app\test\test.ts" />
+    <None Remove="ClientApp\app\user\changePassword\changePassword.component.ts" />
+    <None Remove="ClientApp\app\user\changePassword\changePasswordModel.ts" />
+    <None Remove="ClientApp\app\user\User.ts" />
+    <None Remove="ClientApp\main.ts" />
+    <None Remove="ClientApp\polyfills.ts" />
+    <None Remove="ClientApp\shared\LoggedInGuard.ts" />
+    <None Remove="ClientApp\shared\LoggedInGuardAdministrator.ts" />
+    <None Remove="ClientApp\shared\LoggedInGuardDormitoryAdmin.ts" />
+    <None Remove="ClientApp\shared\LoggedInGuardFacultyAdmin.ts" />
+    <None Remove="ClientApp\shared\LoggedInGuardStudent.ts" />
+    <None Remove="ClientApp\shared\NotLoggedInGuard.ts" />
+    <None Remove="ClientApp\shared\request.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.4" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\administrator\Administrator.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\administratorHome\administratorHome.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\administratorInfo\administratorInfo.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\blocks\blockAdd\blockAdd.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\blocks\blockDetails\blockDetails.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\blocks\blockVisualization\dormitory8\2Rooms\blockVisualization2Rooms.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\blocks\blockVisualization\dormitory8\3Rooms\blockVisualization3Rooms.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\dormitories\dormitories.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\dormitories\dormitoryAdd\dormitoryAdd.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\dormitories\dormitoryDetails\dormitoryDetails.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\dormitories\dormitoryEdit\dormitoryEdit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\faculties\faculties.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\faculties\facultyAdd\facultyAdd.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\faculties\facultyEdit\facultyEdit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\floors\floorAdd\floorAdd.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\floors\floorDetails\floorDetails.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\floors\floorVisualization\dormitory8\floorVisualization.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\groups\groupAdd\groupAdd.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\groups\groupEdit\groupEdit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\groups\groups.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dormitoryAdmin\block\blockDetails\blockDetails.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dormitoryAdmin\faculties\faculties.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dormitoryAdmin\floor\floorDetails\floorDetails.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dormitoryAdmin\groups\groups.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dormitoryAdmin\room\roomDetails\roomDetails.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dormitoryAdmin\studentCategories\studentCategories.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\facultyAdmin\blocks\blockDetails\blockDetails.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\facultyAdmin\dormitories\dormitories.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\facultyAdmin\dormitories\dormitoryDetails\dormitoryDetails.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\facultyAdmin\faculties\faculties.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\facultyAdmin\floors\floorDetails\floorDetails.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\facultyAdmin\groups\groups.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\facultyAdmin\rooms\roomDetails\roomDetails.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\facultyAdmin\studentCategories\studentCategories.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\facultyAdmin\students\students.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\log\Log.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\rooms\roomAddForBlock\roomAdd.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\rooms\roomAddForFloor\roomAdd.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\rooms\roomDetails\roomDetails.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\rooms\roomSettling\roomSettling.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\studentCategories\studentCategories.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\studentCategories\studentCategoryAdd\studentCategoryAdd.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\studentCategories\studentCategoryEdit\studentCategoryEdit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\students\studentAdd\studentAdd.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\students\studentEdit\studentEdit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\students\students.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\app.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\app.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\block\Block.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dormitoryAdmin\dormitoryAdminHome\dormitoryAdminHome.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dormitoryAdmin\dormitoryAdminInfo\dormitoryAdminInfo.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dormitory\Dormitory.ts" />
+    <TypeScriptCompile Include="ClientApp\app\facultyAdmin\facultyAdminHome\facultyAdminHome.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\facultyAdmin\facultyAdminInfo\facultyAdminInfo.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\faculty\Faculty.ts" />
+    <TypeScriptCompile Include="ClientApp\app\floor\Floor.ts" />
+    <TypeScriptCompile Include="ClientApp\app\group\Group.ts" />
+    <TypeScriptCompile Include="ClientApp\app\home\home.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\login\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\roles\Role.ts" />
+    <TypeScriptCompile Include="ClientApp\app\room\Room.ts" />
+    <TypeScriptCompile Include="ClientApp\app\studentCategory\StudentCategory.ts" />
+    <TypeScriptCompile Include="ClientApp\app\student\Student.ts" />
+    <TypeScriptCompile Include="ClientApp\app\student\studentHome\studentHome.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\student\studentInfo\studentInfo.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\test\test.ts" />
+    <TypeScriptCompile Include="ClientApp\app\user\changePassword\changePassword.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\user\changePassword\changePasswordModel.ts" />
+    <TypeScriptCompile Include="ClientApp\app\user\User.ts" />
+    <TypeScriptCompile Include="ClientApp\main.ts" />
+    <TypeScriptCompile Include="ClientApp\polyfills.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\LoggedInGuard.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\LoggedInGuardAdministrator.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\LoggedInGuardDormitoryAdmin.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\LoggedInGuardFacultyAdmin.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\LoggedInGuardStudent.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\NotLoggedInGuard.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\request.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\app\dormitoryAdmin\myDormitory\" />
+  </ItemGroup>
+
+</Project>

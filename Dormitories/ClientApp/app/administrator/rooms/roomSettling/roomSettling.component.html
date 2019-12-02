@@ -1,0 +1,48 @@
+﻿<div *ngIf="room">
+    <br />
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3>Кімната №{{room.name}}</h3></div>
+        <div class="panel-body">
+            <b>Загальна кількість місць: </b>{{room.totalPlaces}}<br />
+            <b>Вільна кількість місць: </b>{{room.freePlaces}}<br />
+            <b>Факультет: </b>{{room.faculty?.name}}<br />
+        </div>
+    </div>
+    <br />
+    <form name="form" *ngIf="room">
+        <div class="form-group" style="display: inline-block;">
+            <input type="text" (input)="Search(searchFullName)" class="form-control" name="studentFullName" [(ngModel)]="searchFullName" required style="width: 300px;" placeholder="Пошук студента по ПІБ" />
+        </div>
+    </form>
+    <table *ngIf="students.length != 0" class="table table-hover">
+        <thead>
+            <tr>
+                <th>ПІБ</th>
+                <th>Факультет</th>
+                <th>Пошта</th>
+                <th>Номер телефону</th>
+                <th>Ім'я користувача</th>
+                <th>Номер студентського</th>
+                <th>Група</th>
+                <th>Рік навчання</th>
+                <th>Категорія студента</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of students">
+                <td class="col-md-3">{{student.fullName}}</td>
+                <td class="col-md-1">{{student.faculty?.name}}</td>
+                <td class="col-md-1">{{student.email}}</td>
+                <td class="col-md-1">{{student.phoneNumber}}</td>
+                <td class="col-md-1">{{student.user?.username}}</td>
+                <td class="col-md-1">{{student.studentCardId}}</td>
+                <td class="col-md-1">{{student.group?.name}}</td>
+                <td class="col-md-1">{{student.studyYear}}</td>
+                <td class="col-md-1">{{student.studentCategory?.description}}</td>
+                <td class="col-md-1"><button (click)="Settle(student.id,room.id)" class="btn pull-right">Поселити</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

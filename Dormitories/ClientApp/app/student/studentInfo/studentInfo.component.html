@@ -1,0 +1,23 @@
+﻿
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <blockquote *ngIf="student" style="font-size: small;">
+                <p><b>ПІБ : </b>{{student.fullName}}</p>
+                <p *ngIf="student.faculty"><b>Факультет : </b>{{student.faculty.name}}</p>
+                <p><b>Електронна пошта : </b>{{student.email}} </p>
+                <p><b>Номер телефона : </b>{{student.phoneNumber}}</p>
+                <p><b>Номер студентського квитка : </b>{{student.studentCardId}}</p>
+                <p *ngIf="student.group"><b>Факультет : </b>{{student.group.name}}</p>
+                <p *ngIf="student.room"><b>Факультет : </b>{{student.room.name}}</p>
+                <p><b>Рік навчання : </b>{{student.studyYear}}</p>
+                <p *ngIf="student.studentCategory"><b>Категорія студентів : </b>{{student.studentCategory.description}}</p>
+                <p *ngIf="student.user"><b>Логін : </b>{{student.user.username}}</p>
+            </blockquote>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary">Змінити пароль</button><br />
+            <button class="btn btn-primary">Змінити персональну інформацію</button>
+        </div>
+    </div>
+</div>
