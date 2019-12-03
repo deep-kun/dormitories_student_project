@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using Dormitories.Loggers;
 
 namespace Dormitories.Services.Implementation
 {
@@ -17,6 +18,7 @@ namespace Dormitories.Services.Implementation
         private readonly IRoomService _roomService;
         private readonly IStudentCategoryService _studentCategoryService;
         private readonly IDbConnection _dbConnection;
+        private readonly ILogger _logger;
 
         public StudentService()
         {
@@ -27,9 +29,12 @@ namespace Dormitories.Services.Implementation
             _roleService = new RoleService();
             _studentCategoryService = new StudentCategoryService();
             _dbConnection = DBAccess.GetDbConnection();
+            _logger = new FileLogger();
         }
         public List<Student> GetStudents()
         {
+            _logger.LogInfo($"Getting students");
+
             var query = "SELECT * FROM [Students]";
             var students = new List<Student>();
 
@@ -78,6 +83,8 @@ namespace Dormitories.Services.Implementation
 
         public List<Student> GetStudentsWhichDoNotHaveRoom()
         {
+            _logger.LogInfo($"Getting students who have no room");
+
             var students = new List<Student>();
             var query = @"SELECT * FROM Students WHERE [RoomId] is NULL";
 
@@ -127,6 +134,8 @@ namespace Dormitories.Services.Implementation
 
         public List<Student> GetStudentByFullNameContains(string studentFullName)
         {
+            _logger.LogInfo($"Getting student where full name contains '{studentFullName}'");
+
             var students = GetStudentsWhichDoNotHaveRoom();
 
             return students.Where(x => x.FullName.Contains(studentFullName)).ToList();
@@ -134,6 +143,8 @@ namespace Dormitories.Services.Implementation
 
         public Student GetStudentByUserName(string username)
         {
+            _logger.LogInfo($"Geting student by user name {username}");
+
             var user = _userService.GetUserByUserName(username);
             var query = "SELECT * FROM [Students] WHERE [UserId] = @UserIdParameter";
             Student student = null;
@@ -182,6 +193,8 @@ namespace Dormitories.Services.Implementation
 
         public bool DeleteStudentById(int studentId)
         {
+            _logger.LogInfo($"Deleting student by Id {studentId}");
+
             var rowsAffected = _dbConnection
                 .Execute(@"DELETE FROM [Students] 
                            WHERE Id = @StudentId", new { StudentId = studentId });
@@ -191,6 +204,8 @@ namespace Dormitories.Services.Implementation
 
         public bool InsertStudent(Student student)
         {
+            _logger.LogInfo($"Inserting student {student.StudentCardId}");
+
             var user = new User()
             {
                 Role = _roleService.GetRoleByName("Student"),
@@ -220,11 +235,15 @@ namespace Dormitories.Services.Implementation
 
         public bool UpdateStudent(Student student)
         {
+            _logger.LogInfo($"Updating student {student.Id}");
+
             throw new NotImplementedException();
         }
 
         public List<Student> GetStudentsByRoomId(int roomId)
         {
+            _logger.LogInfo($"Getting students by room Id {roomId}");
+
             var query = "SELECT * FROM [Students] WHERE [RoomId] = " + roomId;
             var students = new List<Student>();
 
@@ -254,6 +273,8 @@ namespace Dormitories.Services.Implementation
 
         public bool SettleStudent(int studentId, int roomId)
         {
+            _logger.LogInfo($"Settling student {studentId} in room {roomId}");
+
             int rowsAffected = _dbConnection.Execute(@"UPDATE [Students]
                                                        SET 
                                                          [RoomId] = @RoomIdParameter 
@@ -268,6 +289,8 @@ namespace Dormitories.Services.Implementation
 
         public bool EvictionStudent(int studentId)
         {
+            _logger.LogInfo($"Evicting student {studentId}");
+
             int rowsAffected = _dbConnection.Execute(@"UPDATE [Students]
                                                        SET 
                                                          [RoomId] = NULL 

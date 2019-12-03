@@ -5,6 +5,7 @@ using System.Linq;
 using Dapper;
 using Dormitories.Authentication;
 using Dormitories.Models;
+using Dormitories.Loggers;
 
 namespace Dormitories.Services.Implementation
 {
@@ -13,16 +14,20 @@ namespace Dormitories.Services.Implementation
         private readonly IFloorService _floorService;
         private readonly IAdministratorService _administratorService;
         private readonly IDbConnection _dbConnection;
+        private readonly ILogger _logger;
 
         public DormitoryService()
         {
             _floorService = new FloorService();
             _administratorService = new AdministratorService();
             _dbConnection = DBAccess.GetDbConnection();
+            _logger = new FileLogger();
         }
 
         public List<Dormitory> GetDormitories()
         {
+            _logger.LogInfo("Getting Dormitories");
+
             var query = "SELECT * FROM [Dormitories] ORDER BY [Number]";
             var dormitories = new List<Dormitory>();
 
@@ -47,6 +52,8 @@ namespace Dormitories.Services.Implementation
 
         public Dormitory GetDormitoryById(int id)
         {
+            _logger.LogInfo($"Getting dormitory by Id {id}");
+
             var query = "SELECT * FROM [Dormitories] WHERE [Id] = " + id;
             var dormitory = new Dormitory();
 
@@ -71,6 +78,8 @@ namespace Dormitories.Services.Implementation
 
         public Dormitory GetDormitoryByNumber(int number)
         {
+            _logger.LogInfo($"Getting dormitory by number {number}");
+
             var query = "SELECT * FROM [Dormitories] WHERE [Number] = " + number;
             var dormitory = new Dormitory();
 
@@ -95,6 +104,8 @@ namespace Dormitories.Services.Implementation
 
         public Dormitory GetDormitoryByDormitoryAdminId(string dormitoryAdminUsername)
         {
+            _logger.LogInfo($"Getting dormitory by dormitory admin Id {dormitoryAdminUsername}");
+
             var administrator = _administratorService.GetAdministratorByUserName(dormitoryAdminUsername);
 
             var query = "SELECT * FROM [Dormitories] WHERE [ComendantId] = " + administrator.Id;
@@ -121,6 +132,8 @@ namespace Dormitories.Services.Implementation
 
         public bool InsertDormitory(Dormitory dormitory)
         {
+            _logger.LogInfo($"Inserting dormitory '{dormitory.Number}'");
+
             var rowAffected = _dbConnection.Execute(@"INSERT INTO Dormitories([Description],[Address],[Number],[ComendantId])
                                         VALUES(@DormitoryDescription,@DormitoryAddress,@DormitoryNumber,@DormitoryComendantId)", new
             {

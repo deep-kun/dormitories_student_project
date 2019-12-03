@@ -5,6 +5,7 @@ using System.Linq;
 using Dapper;
 using Dormitories.Authentication;
 using Dormitories.Models;
+using Dormitories.Loggers;
 
 namespace Dormitories.Services.Implementation
 {
@@ -12,15 +13,19 @@ namespace Dormitories.Services.Implementation
     {
         private readonly IDbConnection _dbConnection;
         private readonly IRoomService _roomService;
+        private readonly ILogger _logger;
 
         public BlockService()
         {
             _dbConnection = DBAccess.GetDbConnection();
             _roomService = new RoomService();
+            _logger = new FileLogger();
         }
 
         public Block GetSimpleBlockById(int id)
         {
+            _logger.LogInfo($"Getting simple block by Id {id}");
+
             return _dbConnection
                 .Query<Block>("SELECT * FROM [Blocks] WHERE [Id] = " + id)
                 .SingleOrDefault();
@@ -28,6 +33,8 @@ namespace Dormitories.Services.Implementation
 
         public Block GetBlockWithRooms(int blockId)
         {
+            _logger.LogInfo($"Getting block with rooms by id {blockId}");
+
             var block = new Block();
             var query = @"SELECT * FROM [Blocks]
                           WHERE [Id] = @BlockIdParameter";
@@ -57,6 +64,8 @@ namespace Dormitories.Services.Implementation
 
         public Block GetBlockWithRoomsByBlockName(string blockName)
         {
+            _logger.LogInfo($"Getting block with rooms by block name {blockName}");
+
             var block = new Block();
             var query = @"SELECT * FROM [Blocks]
                           WHERE [Name] = @BlockNameParameter";
@@ -86,6 +95,8 @@ namespace Dormitories.Services.Implementation
 
         public List<Block> GetBlocksByFloorId(int floorId)
         {
+            _logger.LogInfo($"Getting blocks by FloorId {floorId}");
+
             return _dbConnection
                 .Query<Block>("SELECT * FROM [Blocks] WHERE [FloorId] = @BlockIdParameter ORDER BY [Name]", new
                 {
@@ -96,6 +107,7 @@ namespace Dormitories.Services.Implementation
 
         public bool InsertBlock(Block block)
         {
+            _logger.LogInfo($"Inserting block '{block.Name}'");
 
             var rowsAffected = _dbConnection.Execute(
                     @"INSERT INTO Blocks(FloorId,Name)
@@ -111,6 +123,8 @@ namespace Dormitories.Services.Implementation
 
         public bool DeleteBlockById(int blockId)
         {
+            _logger.LogInfo($"Deleting block by Id {blockId}");
+
             var rowsAffected = _dbConnection
                 .Execute(@"DELETE FROM [Blocks] 
                            WHERE Id = @BlockId", new { BlockId = blockId });
@@ -120,6 +134,8 @@ namespace Dormitories.Services.Implementation
 
         public bool UpdateBlock(Block block)
         {
+            _logger.LogInfo($"Updating block {block.Id}");
+
             var rowsAffected = _dbConnection.Execute(
                 @"UPDATE Blocks
                   SET FloorId = @FloorIdParameter,

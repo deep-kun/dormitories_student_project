@@ -4,6 +4,7 @@ using System.Data;
 using Dapper;
 using Dormitories.Authentication;
 using Dormitories.Models;
+using Dormitories.Loggers;
 
 namespace Dormitories.Services.Implementation
 {
@@ -11,15 +12,19 @@ namespace Dormitories.Services.Implementation
     {
         private readonly IDbConnection _dbConnection;
         private readonly IFacultyService _facultyService;
+        private readonly ILogger _logger;
 
         public GroupService()
         {
             _dbConnection = DBAccess.GetDbConnection();
             _facultyService = new FacultyService();
+            _logger = new FileLogger();
         }
 
         public List<Group> GetGroups()
         {
+            _logger.LogInfo("Getting Groups");
+
             var query = "SELECT * FROM [Groups]";
             var groups = new List<Group>();
 
@@ -41,6 +46,8 @@ namespace Dormitories.Services.Implementation
 
         public Group GetGroupById(int id)
         {
+            _logger.LogInfo($"Getting group by Id {id}");
+
             var query = "SELECT * FROM [Groups] WHERE [Id] = @IdParameter";
             var group = new Group();
 
@@ -62,6 +69,8 @@ namespace Dormitories.Services.Implementation
 
         public bool InsertGroup(Group group)
         {
+            _logger.LogInfo($"Inserting group '{group.Name}'");
+
             var rowsAffected = _dbConnection.Execute(@"INSERT INTO [Groups]([Name],[FacultyId])
                                         VALUES(@GroupName,@GroupFacultyID)", new
             {
@@ -74,6 +83,8 @@ namespace Dormitories.Services.Implementation
 
         public bool DeleteGroupById(int groupId)
         {
+            _logger.LogInfo($"Deleting group by Id {groupId}");
+
             var rowsAffected = _dbConnection
                 .Execute(@"DELETE FROM [Groups] 
                            WHERE Id = @GroupId", new
@@ -86,6 +97,8 @@ namespace Dormitories.Services.Implementation
 
         public bool UpdateGroup(Group group)
         {
+            _logger.LogInfo($"Updating group {group.Id}");
+
             int rowsAffected = _dbConnection.Execute(@"UPDATE [Groups]
                                                        SET [Name] = @GroupName, [FacultyID] = @FacultyId
                                                        WHERE [Id] = " + group.Id, new

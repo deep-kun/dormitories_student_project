@@ -7,6 +7,7 @@ using System.Linq;
 using Dapper;
 using Dormitories.Authentication;
 using Dormitories.Models;
+using Dormitories.Loggers;
 
 namespace Dormitories.Services.Implementation
 {
@@ -14,15 +15,19 @@ namespace Dormitories.Services.Implementation
     {
         private readonly IRoleService _roleService;
         private readonly IDbConnection _dbConnection;
+        private readonly ILogger _logger;
 
         public UserService()
         {
             _roleService = new RoleService();
             _dbConnection = DBAccess.GetDbConnection();
+            _logger = new FileLogger();
         }
 
         public List<User> GetUsers()
         {
+            _logger.LogInfo("Getting users");
+
             return _dbConnection
                 .Query<User>("SELECT * FROM [Users]")
                 .ToList();
@@ -30,6 +35,8 @@ namespace Dormitories.Services.Implementation
 
         public User GetUserByUserName(string username)
         {
+            _logger.LogInfo($"Getting user by user name '{username}'");
+
             var query = "SELECT * FROM [Users] WHERE [Username] = @UsernameParameter";
             var user = new User();
             
@@ -52,6 +59,8 @@ namespace Dormitories.Services.Implementation
 
         public User GetUserById(int id)
         {
+            _logger.LogInfo($"Getting user by Id {id}");
+
             var query = "SELECT * FROM [Users] WHERE [Id] = @IdParameter";
             var user = new User();
 
@@ -74,6 +83,8 @@ namespace Dormitories.Services.Implementation
 
         public bool InsertUser(User user)
         {
+            _logger.LogInfo($"Inserting user '{user.Username}'");
+
             var rowsAffected = _dbConnection.Execute(@"INSERT INTO [Users]([Username],[PasswordHash],[RoleId]) 
                                         VALUES(@UsernameParameter,@PasswordHashParameter,@RoleIdParameter)", new
             {
@@ -87,6 +98,8 @@ namespace Dormitories.Services.Implementation
 
         public bool ChangePassword(string username, string newPassword)
         {
+            _logger.LogInfo($"Changing password for user '{username}'");
+
             var rowsAffected = _dbConnection.Execute(@"UPDATE [Users]
                                                        SET [PasswordHash] = @PasswordHashParameter
                                                        WHERE [Username] = @UsernameParameter", new
