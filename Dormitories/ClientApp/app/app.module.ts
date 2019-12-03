@@ -42,6 +42,7 @@ import { BlockDetailsForDormitoryAdministratorComponent } from './dormitoryAdmin
 import { StudentCategoriesForDormitoryAdministratorComponent } from './dormitoryAdmin/studentCategories/studentCategories.component';
 //Administrator-pages
 import { AdministratorHomeComponent } from './administrator/administratorHome/administratorHome.component';
+import { RegisterComponent } from './register/register.component';
 import { AdministratorInfoComponent } from './administrator/administratorInfo/administratorInfo.component';
 import { DormitoriesForAdministratorComponent } from './administrator/dormitories/dormitories.component';
 import { DormitoryDetailsForAdministratorComponent } from './administrator/dormitories/dormitoryDetails/dormitoryDetails.component';
@@ -70,7 +71,7 @@ import { RoomSettlingComponentForAdministrator } from './administrator/rooms/roo
 import { ChangePasswordComponent } from './user/changePassword/changePassword.component';
 @NgModule({
     declarations: [
-        AppComponent, LoginComponent, TestComponent, HomeComponent, ChangePasswordComponent,
+        AppComponent, LoginComponent, TestComponent, HomeComponent, ChangePasswordComponent, RegisterComponent,
         //Student
         StudentHomeComponent, StudentInfoComponent, 
         //Administrator
@@ -206,6 +207,7 @@ import { ChangePasswordComponent } from './user/changePassword/changePassword.co
                 ]
             },
             { path: 'login', component: LoginComponent, canActivate: [NotLoggedInGuard] },
+            { path: 'register', component: RegisterComponent, canActivate: [NotLoggedInGuard] },
             { path: '**', redirectTo: '', pathMatch: 'full' }
         ], { useHash: true })]
 })

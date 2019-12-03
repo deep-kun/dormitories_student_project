@@ -81,6 +81,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="!isLogged">
                     <a [routerLink]="['../login']"><span class="glyphicon glyphicon-log-in"></span> Увійти</a>
+                    <a [routerLink]="['../register']"><span class="glyphicon glyphicon-log-in"></span> Реєстрація</a>
                 </li>
                 <li *ngIf="isLogged">
                     <a (click)="Logout()"><span class="glyphicon glyphicon-log-out"></span> Вийти</a>

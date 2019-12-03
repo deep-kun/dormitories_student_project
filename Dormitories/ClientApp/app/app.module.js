@@ -48,6 +48,7 @@ import { BlockDetailsForDormitoryAdministratorComponent } from './dormitoryAdmin
 import { StudentCategoriesForDormitoryAdministratorComponent } from './dormitoryAdmin/studentCategories/studentCategories.component';
 //Administrator-pages
 import { AdministratorHomeComponent } from './administrator/administratorHome/administratorHome.component';
+import { RegisterComponent } from './register/register.component';
 import { AdministratorInfoComponent } from './administrator/administratorInfo/administratorInfo.component';
 import { DormitoriesForAdministratorComponent } from './administrator/dormitories/dormitories.component';
 import { DormitoryDetailsForAdministratorComponent } from './administrator/dormitories/dormitoryDetails/dormitoryDetails.component';
@@ -79,7 +80,7 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         NgModule({
             declarations: [
-                AppComponent, LoginComponent, TestComponent, HomeComponent, ChangePasswordComponent,
+                AppComponent, LoginComponent, TestComponent, HomeComponent, ChangePasswordComponent, RegisterComponent,
                 //Student
                 StudentHomeComponent, StudentInfoComponent,
                 //Administrator
@@ -215,6 +216,7 @@ var AppModule = /** @class */ (function () {
                         ]
                     },
                     { path: 'login', component: LoginComponent, canActivate: [NotLoggedInGuard] },
+                    { path: 'register', component: RegisterComponent, canActivate: [NotLoggedInGuard] },
                     { path: '**', redirectTo: '', pathMatch: 'full' }
                 ], { useHash: true })
             ]
