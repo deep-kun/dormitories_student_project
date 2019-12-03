@@ -8,5 +8,6 @@ namespace Dormitories.Services
         List<Administrator> GetAdministrators();
         Administrator GetAdministratorByUserName(string username);
         Administrator GetAdministratorById(int id);
+        void AddAdministrator(AdminCreateDto administrator);
     }
 }

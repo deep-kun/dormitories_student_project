@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dormitories.Authentication;
 using Dormitories.Models;
+using Dormitories.Services;
 using Dormitories.Services.Implementation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,36 @@ namespace Dormitories.Controllers
     [Route("api/Account")]
     public class AccountController : Controller
     {
+        private IAdministratorService administratorService = new AdministratorService();
+
+        [HttpPost("register")]
+        public async Task Register([FromBody]AdminCreateDto administrator)
+        {
+            try
+            {
+                var rawPassword = administrator.PasswordHash;
+                administrator.PasswordHash = GetHashFromString(administrator.PasswordHash);
+                administratorService.AddAdministrator(administrator);
+                var identity = GetIdentity(administrator.Username, rawPassword);
+                var encodedJwt = GetToken(administrator.Username, rawPassword);
+
+                var response = new
+                {
+                    access_token = encodedJwt,
+                    username = identity.Name,
+                    role = identity.Claims.ToList()[1].Value
+                };
+
+                Response.ContentType = "application/json";
+                await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
+
+            }
+            catch (Exception e)
+            {
+                await Response.WriteAsync(JsonConvert.SerializeObject(new { error = e.Message}, new JsonSerializerSettings { Formatting = Formatting.Indented }));
+            }
+        }
+
         [HttpPost("token")]
         public async Task Token([FromBody]User user)
         {
@@ -33,15 +64,8 @@ namespace Dormitories.Controllers
                 return;
             }
 
-            var now = DateTime.UtcNow;
-            var jwt = new JwtSecurityToken(
-                    issuer: AuthOptions.ISSUER,
-                    audience: AuthOptions.AUDIENCE,
-                    notBefore: now,
-                    claims: identity.Claims,
-                    expires: now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
-                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+            var encodedJwt = GetToken(username, password);
+
             var response = new
             {
                 access_token = encodedJwt,
@@ -73,32 +97,7 @@ namespace Dormitories.Controllers
             {
                 await Response.WriteAsync("Паролі не співпадають");
             }
-            //var identity = GetIdentity(username, password);
 
-            //if (identity == null)
-            //{
-            //    Response.StatusCode = 400;
-            //    await Response.WriteAsync("Логін або пароль не вірний!");
-            //    return;
-            //}
-
-            //var now = DateTime.UtcNow;
-            //var jwt = new JwtSecurityToken(
-            //    issuer: AuthOptions.ISSUER,
-            //    audience: AuthOptions.AUDIENCE,
-            //    notBefore: now,
-            //    claims: identity.Claims,
-            //    expires: now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
-            //    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-            //var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-            //var response = new
-            //{
-            //    access_token = encodedJwt,
-            //    username = identity.Name,
-            //    role = identity.Claims.ToList()[1].Value
-            //};
-
-            //Response.ContentType = "application/json";
             await Response.WriteAsync("All done");
         }
 
@@ -107,8 +106,8 @@ namespace Dormitories.Controllers
             var userService = new UserService();
             User user = userService.GetUserByUserName(username);
 
-            //if (user != null && Convert.ToBase64String(Encoding.UTF8.GetBytes(password)) == user.PasswordHash)
-            if (user != null && password.Equals(user.PasswordHash))
+            if (user != null && Convert.ToBase64String(Encoding.UTF8.GetBytes(password)) == user.PasswordHash)
+            //if (user != null && password.Equals(user.PasswordHash))
             {
                 var claims = new List<Claim>
                 {
@@ -132,5 +131,23 @@ namespace Dormitories.Controllers
 
             return userService.ChangePassword(username, newPasswordHash);
         }
+
+        private string GetToken(string userName, string password)
+        {
+            var now = DateTime.UtcNow;
+            var jwt = new JwtSecurityToken(
+                    issuer: AuthOptions.ISSUER,
+                    audience: AuthOptions.AUDIENCE,
+                    notBefore: now,
+                    claims: GetIdentity(userName, password).Claims,
+                    expires: now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
+                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
+            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+            return encodedJwt;
+        }
+
+        private string GetHashFromString(string value)
+            => Convert.ToBase64String(Encoding.UTF8.GetBytes(value));
+
     }
 }

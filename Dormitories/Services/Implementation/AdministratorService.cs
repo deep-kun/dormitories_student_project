@@ -20,6 +20,38 @@ namespace Dormitories.Services.Implementation
             _dbConnection = DBAccess.GetDbConnection();
         }
 
+        public void AddAdministrator(AdminCreateDto administrator)
+        {
+            var query = $@"
+                              IF NOT EXISTS(
+                              SELECT id FROM Roles WHERE Name = 'Administrator'
+                              )
+                              begin
+                              insert into Roles VALUES ('Administrator')
+                            end
+
+                           IF NOT EXISTS(
+                           SELECT 1 FROM Faculties WHERE Name = @{nameof(administrator.Faculty)}
+                           )
+                           begin
+                            insert into Faculties VALUES (@{nameof(administrator.Faculty)})
+                           end
+
+                        insert into users values(
+                        @{nameof(administrator.Username)}
+                        ,@{nameof(administrator.PasswordHash)}
+                        ,(SELECT id FROM Roles WHERE Name = 'Administrator'))
+
+                    insert into Administrators values (
+                        @{nameof(administrator.FullName)}
+                        ,( SELECT id FROM Faculties WHERE Name = @{nameof(administrator.Faculty)})
+                        ,@{nameof(administrator.Email)}
+                        ,@{nameof(administrator.PhoneNumber)}
+                        ,SCOPE_IDENTITY())";
+
+             _dbConnection.Execute(query, administrator);
+        }
+
         public List<Administrator> GetAdministrators()
         {
             var query = "SELECT * FROM [Administrators]";
