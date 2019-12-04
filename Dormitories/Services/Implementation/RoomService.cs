@@ -5,6 +5,7 @@ using System.Linq;
 using Dapper;
 using Dormitories.Authentication;
 using Dormitories.Models;
+using Dormitories.Loggers;
 
 namespace Dormitories.Services.Implementation
 {
@@ -15,6 +16,7 @@ namespace Dormitories.Services.Implementation
         private readonly IGroupService _groupService;
         private readonly IStudentCategoryService _studentCategoryService;
         private readonly IUserService _userService;
+        private readonly ILogger _logger;
 
         public RoomService()
         {
@@ -23,10 +25,13 @@ namespace Dormitories.Services.Implementation
             _groupService = new GroupService();
             _studentCategoryService = new StudentCategoryService();
             _userService = new UserService();
+            _logger = new FileLogger();
         }
 
         public Room GetSimpleRoomById(int id)
         {
+            _logger.LogInfo($"Getting simple room by Id {id}");
+
             return _dbConnection
                 .Query<Room>("SELECT * FROM [Rooms] WHERE [Id] = " + id)
                 .SingleOrDefault();
@@ -34,6 +39,8 @@ namespace Dormitories.Services.Implementation
 
         public Room GetRoomWithStudents(int id)
         {
+            _logger.LogInfo($"Geting room with students by Id {id}");
+
             Room room = null;
             var query = @"SELECT * FROM [Rooms] WHERE [Id] = @IdParameter";
             var studentsForThisRoom = GetStudentsByRoomId(id);
@@ -67,7 +74,9 @@ namespace Dormitories.Services.Implementation
 
         public List<Room> GetRoomsByFloorId(int floorId)
         {
-            List<Room> rooms = new List<Room>();
+            _logger.LogInfo($"Getting rooms by floor Id {floorId}");
+
+            List <Room> rooms = new List<Room>();
             var query = @"SELECT * FROM [Rooms] WHERE [FloorId] = @FloorIdParameter ORDER BY [Name]";
 
             try
@@ -100,6 +109,8 @@ namespace Dormitories.Services.Implementation
 
         public List<Room> GetRoomsByBlockId(int blockId)
         {
+            _logger.LogInfo($"Getting rooms by block Id {blockId}");
+
             List<Room> rooms = new List<Room>();
             var query = @"SELECT * FROM [Rooms] WHERE [BlockId] = @BlockIdParameter ORDER BY [Name]";
 
@@ -130,6 +141,8 @@ namespace Dormitories.Services.Implementation
 
         public bool InsertRoom(Room room)
         {
+            _logger.LogInfo($"Inserting room '{room.Name}'");
+
             if (room.Block != null)
             {
                 _dbConnection.Execute(@"INSERT INTO [Rooms]([TotalPlaces],[FreePlaces],[FacultyId],[BlockId],[Name])
@@ -165,6 +178,8 @@ namespace Dormitories.Services.Implementation
 
         public bool DeleteRoomById(int roomId)
         {
+            _logger.LogInfo($"Deleting room by Id {roomId}");
+
             var rowsAffected = _dbConnection
                 .Execute(@"DELETE FROM [Rooms] 
                            WHERE Id = @RoomId", new { RoomId = roomId });
@@ -174,6 +189,8 @@ namespace Dormitories.Services.Implementation
 
         public bool UpdateRoom(Room room)
         {
+            _logger.LogInfo($"Updating room by id {room.Id}");
+
             int rowsAffected = 0;
 
             if (room.Block?.Id != 0)
@@ -210,6 +227,8 @@ namespace Dormitories.Services.Implementation
 
         public void RoomFreePlacesToLower(int roomId)
         {
+            _logger.LogInfo("Getting room free places to lower by Id {roomId}");
+
             var room = GetSimpleRoomById(roomId);
 
             _dbConnection.Execute(@"UPDATE [Rooms]
@@ -222,6 +241,8 @@ namespace Dormitories.Services.Implementation
 
         public void RoomFreePlacesToUpper(int roomId)
         {
+            _logger.LogInfo($"Getting room free places to upper by Id {roomId}");
+
             var room = GetSimpleRoomById(roomId);
 
             _dbConnection.Execute(@"UPDATE [Rooms]
@@ -234,6 +255,8 @@ namespace Dormitories.Services.Implementation
 
         private List<Student> GetStudentsByRoomId(int roomId)
         {
+            _logger.LogInfo($"Getting students by room Id {roomId}");
+
             var query = "SELECT * FROM [Students] WHERE [RoomId] = " + roomId;
             var students = new List<Student>();
 
