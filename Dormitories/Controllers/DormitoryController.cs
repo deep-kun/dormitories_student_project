@@ -8,6 +8,7 @@ using Dormitories.Services.Implementation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Dormitories.Loggers;
 
 namespace Dormitories.Controllers
 {
@@ -16,21 +17,40 @@ namespace Dormitories.Controllers
     public class DormitoryController : Controller
     {
         private readonly IDormitoryService _dormitoryService = new DormitoryService();
+        private readonly ILogger _logger = new FileLogger();
 
         // GET: api/dormitories
         [HttpGet]
         [Route("api/dormitories")]
         public List<Dormitory> GetDormitories()
         {
-            return _dormitoryService.GetDormitories();
-        }
+            _logger.LogInfo("API HttpGet api/dormitories");
+            try
+            {
+                return _dormitoryService.GetDormitories();
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpGet api/dormitories  " + e.Message);
+                throw e;
+            }
+}
 
         // GET: api/dormitories/{dormitoryId}
         [HttpGet]
         [Route("api/dormitories/{dormitoryId}")]
         public Dormitory GetDormitoryById(int dormitoryId)
         {
-            return _dormitoryService.GetDormitoryById(dormitoryId);
+            _logger.LogInfo("API HttpGet api/dormitories/{dormitoryId}");
+            try
+            {
+                return _dormitoryService.GetDormitoryById(dormitoryId);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpGet api/dormitories/{dormitoryId}  " + e.Message);
+                throw e;
+            }
         }
 
         // GET: api/dormitories/dormitoryAdmin/{dormitoryAdminUsername}
@@ -38,7 +58,16 @@ namespace Dormitories.Controllers
         [Route("api/dormitories/dormitoryAdmin/{dormitoryAdminUsername}")]
         public Dormitory GetDormitoryByDormitoryAdminId(string dormitoryAdminUsername)
         {
-            return _dormitoryService.GetDormitoryByDormitoryAdminId(dormitoryAdminUsername);
+            _logger.LogInfo("API HttpGet api/dormitories/dormitoryAdmin/{dormitoryAdminUsername}");
+            try
+            {
+                return _dormitoryService.GetDormitoryByDormitoryAdminId(dormitoryAdminUsername);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpGet api/dormitories/dormitoryAdmin/{dormitoryAdminUsername}  " + e.Message);
+                throw e;
+            }
         }
 
         // INSERT: api/dormitories
@@ -46,7 +75,16 @@ namespace Dormitories.Controllers
         [Route("api/dormitories")]
         public bool InsertDormitory([FromBody]Dormitory dormitory)
         {
-            return _dormitoryService.InsertDormitory(dormitory);
+            _logger.LogInfo("API HttpPost api/dormitories");
+            try
+            {
+                return _dormitoryService.InsertDormitory(dormitory);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpPost api/dormitories  " + e.Message);
+                throw e;
+            }
         }
     }
 }

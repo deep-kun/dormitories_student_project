@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using Dormitories.Loggers;
 
 namespace Dormitories.Controllers
 {
@@ -21,10 +22,13 @@ namespace Dormitories.Controllers
     public class AccountController : Controller
     {
         private IAdministratorService administratorService = new AdministratorService();
+        private readonly ILogger _logger = new FileLogger();
 
         [HttpPost("register")]
         public async Task Register([FromBody]AdminCreateDto administrator)
         {
+            _logger.LogInfo("API HttpPost api/Account/register");
+
             try
             {
                 var rawPassword = administrator.PasswordHash;
@@ -46,6 +50,7 @@ namespace Dormitories.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError("API HttpPost api/Account/register " + e.Message);
                 await Response.WriteAsync(JsonConvert.SerializeObject(new { error = e.Message}, new JsonSerializerSettings { Formatting = Formatting.Indented }));
             }
         }
@@ -53,52 +58,70 @@ namespace Dormitories.Controllers
         [HttpPost("token")]
         public async Task Token([FromBody]User user)
         {
-            var username = user.Username;
-            var password = user.PasswordHash;
-            var identity = GetIdentity(username, password);
+            _logger.LogInfo("API HttpPost api/Account/token");
 
-            if (identity == null)
+            try
             {
-                Response.StatusCode = 400;
-                await Response.WriteAsync("Логін або пароль не вірний!");
-                return;
+                var username = user.Username;
+                var password = user.PasswordHash;
+                var identity = GetIdentity(username, password);
+
+                if (identity == null)
+                {
+                    Response.StatusCode = 400;
+                    await Response.WriteAsync("Логін або пароль не вірний!");
+                    return;
+                }
+
+                var encodedJwt = GetToken(username, password);
+
+                var response = new
+                {
+                    access_token = encodedJwt,
+                    username = identity.Name,
+                    role = identity.Claims.ToList()[1].Value
+                };
+
+                Response.ContentType = "application/json";
+                await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
             }
-
-            var encodedJwt = GetToken(username, password);
-
-            var response = new
+            catch (Exception e)
             {
-                access_token = encodedJwt,
-                username = identity.Name,
-                role = identity.Claims.ToList()[1].Value
-            };
-
-            Response.ContentType = "application/json";
-            await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
+                _logger.LogError("API HttpPost api/Account/token " + e.Message);
+            }          
         }
 
         [HttpPost("changePassword")]
         public async Task Token([FromBody]ChangePasswordModel changePasswordModel)
         {
+            _logger.LogInfo("API HttpPost api/Account/changePassword");
+
             var userService = new UserService();
 
-            if (changePasswordModel.NewPassword == changePasswordModel.ConfirmationNewPassword)
+            try
             {
-                var user = userService.GetUserByUserName(changePasswordModel.Username);
-                
-                if(user == null)
+                if (changePasswordModel.NewPassword == changePasswordModel.ConfirmationNewPassword)
                 {
-                    await Response.WriteAsync("Старий пароль не вірний");
+                    var user = userService.GetUserByUserName(changePasswordModel.Username);
+
+                    if (user == null)
+                    {
+                        await Response.WriteAsync("Старий пароль не вірний");
+                    }
+
+                    ChangePassword(changePasswordModel.Username, changePasswordModel.NewPassword);
+                }
+                else
+                {
+                    await Response.WriteAsync("Паролі не співпадають");
                 }
 
-                ChangePassword(changePasswordModel.Username, changePasswordModel.NewPassword);
+                await Response.WriteAsync("All done");
             }
-            else
+            catch (Exception e)
             {
-                await Response.WriteAsync("Паролі не співпадають");
+                _logger.LogError("API HttpPost api/Account/changePassword  " + e.Message);
             }
-
-            await Response.WriteAsync("All done");
         }
 
         private ClaimsIdentity GetIdentity(string username, string password)

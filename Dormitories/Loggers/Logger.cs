@@ -12,12 +12,16 @@ namespace Dormitories.Loggers
         
         public FileLogger()
         {
-            directory = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            directory = "../logs/";//System.Reflection.Assembly.GetExecutingAssembly().Location;
         }
 
         public void LogInfo(string info)
         {
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(directory, DateTime.Today.ToString() + ".txt")))
+            CheckIfLogExists();
+
+            string path = String.Format($@"bin\logs\log[{DateTime.Today.Year}.{DateTime.Today.Month}.{DateTime.Today.Day}].txt", AppDomain.CurrentDomain.BaseDirectory);
+            
+            using (StreamWriter outputFile = File.AppendText(path))
             {
                 outputFile.WriteLine($"INFO {DateTime.Now} - {info}.");
             }
@@ -25,10 +29,21 @@ namespace Dormitories.Loggers
 
         public void LogError(string error)
         {
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(directory, DateTime.Today.ToString() + ".txt")))
+            CheckIfLogExists();
+
+            string path = String.Format($@"bin\logs\log[{DateTime.Today.Year}.{DateTime.Today.Month}.{DateTime.Today.Day}].txt", AppDomain.CurrentDomain.BaseDirectory);
+
+            using (StreamWriter outputFile = File.AppendText(path))
             {
                 outputFile.WriteLine($"ERROR {DateTime.Now} - {error}.");
             }
+        }
+
+        private void CheckIfLogExists()
+        {
+            string path = String.Format(@"bin\logs", AppDomain.CurrentDomain.BaseDirectory);
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
         }
     }
 }

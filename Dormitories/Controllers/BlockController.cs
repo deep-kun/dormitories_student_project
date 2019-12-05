@@ -3,6 +3,7 @@ using Dormitories.Models;
 using Dormitories.Services.Implementation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Dormitories.Loggers;
 
 namespace Dormitories.Controllers
 {
@@ -11,13 +12,23 @@ namespace Dormitories.Controllers
     public class BlockController : Controller
     {
         private readonly BlockService _blockService = new BlockService();
+        private readonly ILogger _logger = new FileLogger();
 
         // GET: api/blocks/{groupId}
         [HttpGet]
         [Route("api/blocks/{blockId}")]
         public Block GetBlockById(int blockId)
         {
-            return _blockService.GetBlockWithRooms(blockId);
+            _logger.LogInfo("API HttpGet api/blocks/{blockId}");
+            try
+            {
+                return _blockService.GetBlockWithRooms(blockId);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpGet api/blocks/{blockId}  " + e.Message);
+                throw e;
+            }
         }
 
         // GET: api/blocks/name/{blockName}
@@ -25,7 +36,16 @@ namespace Dormitories.Controllers
         [Route("api/blocks/name/{blockName}")]
         public Block GetBlockByName(string blockName)
         {
-            return _blockService.GetBlockWithRoomsByBlockName(blockName);
+            _logger.LogInfo("API HttpGet api/blocks/name/{blockName}");
+            try
+            {
+                return _blockService.GetBlockWithRoomsByBlockName(blockName);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpGet api/blocks/name/{blockName}  " + e.Message);
+                throw e;
+            }
         }
 
         // GET: api/blocks/floor/{floorId}
@@ -33,7 +53,16 @@ namespace Dormitories.Controllers
         [Route("api/blocks/floor/{floorId}")]
         public List<Block> GetBlockssByFloorId(int floorId)
         {
-            return _blockService.GetBlocksByFloorId(floorId);
+            _logger.LogInfo("API HttpGet api/blocks/floor/{floorId}");
+            try
+            {
+                return _blockService.GetBlocksByFloorId(floorId);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpGet api/blocks/floor/{floorId}  " + e.Message);
+                throw e;
+            }
         }
 
         // DELETE: api/blocks/{blockId}
@@ -41,7 +70,16 @@ namespace Dormitories.Controllers
         [Route("api/blocks/{blockId}")]
         public bool DeleteBlock(int blockId)
         {
-            return _blockService.DeleteBlockById(blockId);
+            _logger.LogInfo("API HttpDelete api/blocks/{blockId}");
+            try
+            {
+                return _blockService.DeleteBlockById(blockId);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpDelete api/blocks/{blockId}  " + e.Message);
+                throw e;
+            }
         }
 
         // UPDATE: api/blocks
@@ -49,7 +87,16 @@ namespace Dormitories.Controllers
         [Route("api/blocks")]
         public bool UpdateBlock([FromBody]Block block)
         {
-            return _blockService.UpdateBlock(block);
+            _logger.LogInfo("API HttpPut api/blocks");
+            try
+            {
+                return _blockService.UpdateBlock(block);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpPut api/blocks  " + e.Message);
+                throw e;
+            }
         }
 
         //INSERT: api/blocks
@@ -57,7 +104,16 @@ namespace Dormitories.Controllers
         [Route("api/blocks")]
         public bool InsertBlock([FromBody]Block block)
         {
-            return _blockService.InsertBlock(block);
+            _logger.LogInfo("API HttpPost api/blocks");
+            try
+            {
+                return _blockService.InsertBlock(block);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpPost api/blocks  " + e.Message);
+                throw e;
+            }
         }
     }
 }

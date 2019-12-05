@@ -4,6 +4,7 @@ using Dormitories.Services;
 using Dormitories.Services.Implementation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Dormitories.Loggers;
 
 namespace Dormitories.Controllers
 {
@@ -12,13 +13,23 @@ namespace Dormitories.Controllers
     public class GroupController : Controller
     {
         private readonly IGroupService _groupService = new GroupService();
+        private readonly ILogger _logger = new FileLogger();
 
         // GET: api/groups
         [HttpGet]
         [Route("api/groups")]
         public List<Group> GetGroups()
         {
-            return _groupService.GetGroups();
+            _logger.LogInfo("API HttpGet api/groups");
+            try
+            {
+                return _groupService.GetGroups();
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpGet api/groups  " + e.Message);
+                throw e;
+            }
         }
 
         // GET: api/groups/{groupId}
@@ -26,7 +37,16 @@ namespace Dormitories.Controllers
         [Route("api/groups/{groupId}")]
         public Group GetGroupById(int groupId)
         {
-            return _groupService.GetGroupById(groupId);
+            _logger.LogInfo("API HttpGet api/groups/{groupId}");
+            try
+            {
+                return _groupService.GetGroupById(groupId);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpGet api/groups/{groupId}  " + e.Message);
+                throw e;
+            }
         }
 
         // DELETE: api/groups/{groupId}
@@ -34,7 +54,16 @@ namespace Dormitories.Controllers
         [Route("api/groups/{groupId}")]
         public bool DeleteGroup(int groupId)
         {
-            return _groupService.DeleteGroupById(groupId);
+            _logger.LogInfo("API HttpDelete api/groups/{groupId}");
+            try
+            {
+                return _groupService.DeleteGroupById(groupId);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpDelete api/groups/{groupId}  " + e.Message);
+                throw e;
+            }
         }
 
         // UPDATE: api/groups
@@ -42,7 +71,16 @@ namespace Dormitories.Controllers
         [Route("api/groups")]
         public bool UpdateGroup([FromBody]Group group)
         {
-            return _groupService.UpdateGroup(group);
+            _logger.LogInfo("API HttpPut api/groups");
+            try
+            {
+                return _groupService.UpdateGroup(group);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpPut api/groups  " + e.Message);
+                throw e;
+            }
         }
 
         // INSERT: api/groups
@@ -50,7 +88,16 @@ namespace Dormitories.Controllers
         [Route("api/groups")]
         public bool InsertGroup([FromBody]Group group)
         {
-            return _groupService.InsertGroup(group);
+            _logger.LogInfo("API HttpPost api/groups");
+            try
+            {
+                return _groupService.InsertGroup(group);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpPost api/groups  " + e.Message);
+                throw e;
+            }
         }
 
     }

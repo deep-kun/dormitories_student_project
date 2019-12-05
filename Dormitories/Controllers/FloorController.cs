@@ -8,6 +8,7 @@ using Dormitories.Services.Implementation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Dormitories.Loggers;
 
 namespace Dormitories.Controllers
 {
@@ -16,13 +17,23 @@ namespace Dormitories.Controllers
     public class FloorController : Controller
     {
         private readonly IFloorService _floorService = new FloorService();
+        private readonly ILogger _logger = new FileLogger();
 
         // GET: api/floors/{floorId}
         [HttpGet]
         [Route("api/floors/{floorId}")]
         public Floor GetFloorById(int floorId)
         {
-            return _floorService.GetFloorWithBlocksAndRooms(floorId);
+            _logger.LogInfo("API HttpGet api/floors/{floorId}");
+            try
+            {
+                return _floorService.GetFloorWithBlocksAndRooms(floorId);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpGet api/floors/{floorId}  " + e.Message);
+                throw e;
+            }
         }
 
         // GET: api/floors/dormitory/{dormitoryId}
@@ -30,7 +41,16 @@ namespace Dormitories.Controllers
         [Route("api/floors/dormitory/{dormitoryId}")]
         public List<Floor> GetFloorByDormitoryId(int dormitoryId)
         {
-            return _floorService.GetFloorsByDormitoryId(dormitoryId);
+            _logger.LogInfo("API HttpGet api/floors/dormitory/{dormitoryId}");
+            try
+            {
+                return _floorService.GetFloorsByDormitoryId(dormitoryId);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpGet api/floors/dormitory/{dormitoryId}  " + e.Message);
+                throw e;
+            }
         }
 
         // DELETE: api/floors/{floorId}
@@ -38,7 +58,16 @@ namespace Dormitories.Controllers
         [Route("api/floors/{floorId}")]
         public bool DeleteFloor(int floorId)
         {
-            return _floorService.DeleteFloorById(floorId);
+            _logger.LogInfo("API HttpDelete api/floors/{floorId}");
+            try
+            {
+                return _floorService.DeleteFloorById(floorId);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpDelete api/floors/{floorId}  " + e.Message);
+                throw e;
+            }
         }
 
         // UPDATE: api/floors
@@ -46,7 +75,16 @@ namespace Dormitories.Controllers
         [Route("api/floors")]
         public bool UpdateFloor([FromBody]Floor floor)
         {
-            return _floorService.UpdateFloor(floor);
+            _logger.LogInfo("API HttpPut api/floors");
+            try
+            {
+                return _floorService.UpdateFloor(floor);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpPut api/floors  " + e.Message);
+                throw e;
+            }
         }
 
         //INSERT: api/floors
@@ -54,7 +92,16 @@ namespace Dormitories.Controllers
         [Route("api/floors")]
         public bool InsertFloor([FromBody]Floor floor)
         {
-            return _floorService.InsertFloor(floor);
+            _logger.LogInfo("API HttpPost api/floors");
+            try
+            {
+                return _floorService.InsertFloor(floor);
+            }
+            catch (System.Exception e)
+            {
+                _logger.LogError("API HttpPost api/floors  " + e.Message);
+                throw e;
+            }
         }
     }
 }
