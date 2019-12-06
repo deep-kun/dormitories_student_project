@@ -20,11 +20,15 @@ namespace Dormitories.Loggers
             CheckIfLogExists();
 
             string path = String.Format($@"bin\logs\log[{DateTime.Today.Year}.{DateTime.Today.Month}.{DateTime.Today.Day}].txt", AppDomain.CurrentDomain.BaseDirectory);
-            
-            using (StreamWriter outputFile = File.AppendText(path))
+
+            try
             {
-                outputFile.WriteLine($"INFO {DateTime.Now} - {info}.");
+                using (StreamWriter outputFile = File.AppendText(path))
+                {
+                    outputFile.WriteLine($"INFO {DateTime.Now} - {info}.");
+                }
             }
+            catch { }
         }
 
         public void LogError(string error)
@@ -32,11 +36,14 @@ namespace Dormitories.Loggers
             CheckIfLogExists();
 
             string path = String.Format($@"bin\logs\log[{DateTime.Today.Year}.{DateTime.Today.Month}.{DateTime.Today.Day}].txt", AppDomain.CurrentDomain.BaseDirectory);
-
-            using (StreamWriter outputFile = File.AppendText(path))
+            try
             {
-                outputFile.WriteLine($"ERROR {DateTime.Now} - {error}.");
+                using (StreamWriter outputFile = File.AppendText(path))
+                {
+                    outputFile.WriteLine($"ERROR {DateTime.Now} - {error}.");
+                }
             }
+            catch { }
         }
 
         private void CheckIfLogExists()
