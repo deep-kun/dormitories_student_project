@@ -5,13 +5,14 @@
         </div>
         <hr />
         <div class="modal-body">
-            <form action="" role="form">
+            <form name="form" (ngSubmit)="f.form.valid && Login()" #f="ngForm" novalidate>
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-user"></span>
                         </span>
-                        <input type="text" [(ngModel)]="user.Username" class="form-control" placeholder="Введіть логін" name="username" />
+                        <input type="text" [(ngModel)]="user.Username" class="form-control" id="username" name="username" #username="ngModel" required minlength="8" placeholder="Введіть логін"  />
+                        <div *ngIf="f.submitted && !username.valid" class="help-block">Довжина логніа має бути більша 8 симsволів</div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -55,10 +56,7 @@
                     </div>
                 </div>
                 <p style="color: red;" *ngIf="wrongCredentials"> Неправильний логін або пароль.</p>
-                <div class="form-group text-center">
-                    <button type="submit" (click)="Login()" class="btn btn-success btn-lg">Зареєструватись</button>
-                </div>
-
+                <button class="form-group text-center">Зареєструватись</button>
             </form>
         </div>
     </div>
