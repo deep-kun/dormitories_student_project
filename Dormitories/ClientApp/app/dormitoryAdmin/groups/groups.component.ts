@@ -4,7 +4,8 @@ import { RequestService } from '../../../shared/request.service';
 import { Group } from '../../group/Group';
 
 @Component({
-    templateUrl: './groups.component.html'
+    templateUrl: './groups.component.html',
+    styleUrls: ['./groups.component.css']
 })
 export class GroupsForDormitoryAdministratorComponent {
     private groups: Group[];

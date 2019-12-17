@@ -3,7 +3,8 @@ import { RequestService } from '../../../shared/request.service';
 import { Administrator } from '../../administrator/Administrator';
 
 @Component({
-    templateUrl: './dormitoryAdminInfo.component.html'
+    templateUrl: './dormitoryAdminInfo.component.html',
+    styleUrls: ['./dormitoryAdminInfo.component.css']
 })
 
 export class DormitoryAdminInfoComponent {

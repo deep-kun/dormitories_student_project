@@ -4,7 +4,8 @@ import { RequestService } from '../../../shared/request.service';
 import { StudentCategory } from '../../studentCategory/StudentCategory';
 
 @Component({
-    templateUrl: '/studentCategories.component.html'
+    templateUrl: '/studentCategories.component.html',
+    styleUrls: ['/studentCategories.component.css']
 })
 export class StudentCategoriesForDormitoryAdministratorComponent {
     private studentCategories: StudentCategory[];

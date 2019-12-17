@@ -179,8 +179,4 @@
     <TypeScriptCompile Include="ClientApp\shared\request.service.ts" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ClientApp\app\dormitoryAdmin\myDormitory\" />
-  </ItemGroup>
-
 </Project>

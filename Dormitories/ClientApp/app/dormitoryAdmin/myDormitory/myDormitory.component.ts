@@ -4,7 +4,8 @@ import { RequestService } from '../../../shared/request.service';
 import { Dormitory } from '../../dormitory/Dormitory';
 
 @Component({
-    templateUrl: './myDormitory.component.html'
+    templateUrl: './myDormitory.component.html',
+    styleUrls: ['./myDormitory.component.css']
 })
 export class MyDormitoryComponent {
     private dormitory: Dormitory;

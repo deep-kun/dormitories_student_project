@@ -4,7 +4,8 @@ import { RequestService } from '../../../shared/request.service';
 import { Faculty } from '../../faculty/Faculty';
 
 @Component({
-    templateUrl: './faculties.component.html'
+    templateUrl: './faculties.component.html',
+    styleUrls: ['./faculties.component.css']
 })
 export class FacultiesForDormitoryAdminComponent {
     private faculties: Faculty[];
