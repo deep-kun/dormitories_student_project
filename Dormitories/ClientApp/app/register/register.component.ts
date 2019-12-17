@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app',
     templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css'],
     providers: [HttpClient]
 })
 export class RegisterComponent {

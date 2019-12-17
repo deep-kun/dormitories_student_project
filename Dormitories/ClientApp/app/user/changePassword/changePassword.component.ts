@@ -5,6 +5,7 @@ import { ChangePasswordModel } from './changePasswordModel';
 
 @Component({
     templateUrl: './changePassword.component.html',
+    styleUrls: ['./changePassword.component.css'],
     providers: [HttpClient]
 })
 export class ChangePasswordComponent {

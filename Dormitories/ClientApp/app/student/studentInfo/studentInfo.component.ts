@@ -3,7 +3,8 @@ import { RequestService } from '../../../shared/request.service';
 import { Student } from '../Student';
 
 @Component({
-    templateUrl: './studentInfo.component.html'
+    templateUrl: './studentInfo.component.html',
+    styleUrls: ['./studentInfo.component.css']
 })
 
 export class StudentInfoComponent {
