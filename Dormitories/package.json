@@ -18,15 +18,16 @@
   "devDependencies": {
     "@types/node": "^8.0.47",
     "@types/webpack-env": "1.13.0",
-    "typescript": "^2.6.0",
-    "webpack": "^3.8.1",
-    "webpack-hot-middleware": "^2.20.0",
     "angular2-template-loader": "^0.6.2",
-    "awesome-typescript-loader": "^3.3.0",
-    "uglifyjs-webpack-plugin": "^1.0.1",
     "aspnet-prerendering": "^3.0.1",
     "aspnet-webpack": "^2.0.1",
+    "awesome-typescript-loader": "^3.3.0",
+    "file-loader": "^5.0.2",
+    "html-loader": "^0.5.1",
     "raw-loader": "^0.5.1",
-    "html-loader": "^0.5.1"
+    "typescript": "^2.6.0",
+    "uglifyjs-webpack-plugin": "^1.0.1",
+    "webpack": "^3.8.1",
+    "webpack-hot-middleware": "^2.20.0"
   }
 }

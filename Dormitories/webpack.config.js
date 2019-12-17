@@ -32,6 +32,12 @@ module.exports = {
                 test: /\.css$/,
                 include: path.resolve(__dirname, 'ClientApp/app'),
                 loader: 'raw-loader'
+            }, {
+                test: /\.(png|jpe?g|gif)$/i,
+                loader: 'file-loader',
+                options: {
+                    outputPath: 'images',
+                },
             }
         ]
     },
