@@ -8,7 +8,8 @@ import { StudentCategory } from '../../../studentCategory/StudentCategory';
 import { forkJoin } from "rxjs/observable/forkJoin";
 
 @Component({
-    templateUrl: './studentAdd.component.html'
+    templateUrl: './studentAdd.component.html',
+    styleUrls: ['./studentAdd.component.css']
 })
 
 export class StudentAddForAdministratorComponent {

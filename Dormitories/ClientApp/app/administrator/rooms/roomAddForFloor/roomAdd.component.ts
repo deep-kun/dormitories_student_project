@@ -6,7 +6,8 @@ import { Faculty } from '../../../faculty/Faculty';
 import { Floor } from '../../../floor/Floor';
 
 @Component({
-    templateUrl: './roomAdd.component.html'
+    templateUrl: './roomAdd.component.html',
+    styleUrls: ['./roomAdd.component.css']
 })
 
 export class RoomAddForFloorAdministratorComponent {

@@ -6,7 +6,8 @@ import { Student } from '../../../student/Student';
 import { forkJoin } from "rxjs/observable/forkJoin";
 
 @Component({
-    templateUrl: './roomSettling.component.html'
+    templateUrl: './roomSettling.component.html',
+    styleUrls: ['./roomSettling.component.css']
 })
 export class RoomSettlingComponentForAdministrator {
     private room: Room;

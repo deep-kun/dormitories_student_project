@@ -5,7 +5,8 @@ import { Dormitory } from '../../../dormitory/Dormitory';
 import { Administrator } from '../../../administrator/Administrator';
 
 @Component({
-    templateUrl: './dormitoryAdd.component.html'
+    templateUrl: './dormitoryAdd.component.html',
+    styleUrls: ['./dormitoryAdd.component.css']
 })
 
 export class DormitoryAddForAdministratorComponent {

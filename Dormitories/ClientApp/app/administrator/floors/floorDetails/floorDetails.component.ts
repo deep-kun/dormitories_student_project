@@ -4,7 +4,8 @@ import { RequestService } from '../../../../shared/request.service';
 import { Floor } from '../../../floor/Floor';
 
 @Component({
-    templateUrl: './floorDetails.component.html'
+    templateUrl: './floorDetails.component.html',
+    styleUrls: ['./floorDetails.component.css']
 })
 export class FloorDetailsForAdministratorComponent {
     private floor: Floor;

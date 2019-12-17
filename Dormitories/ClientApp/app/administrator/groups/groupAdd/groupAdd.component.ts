@@ -5,7 +5,8 @@ import { Group } from '../../../group/Group';
 import { Faculty } from '../../../faculty/Faculty';
 
 @Component({
-    templateUrl: './groupAdd.component.html'
+    templateUrl: './groupAdd.component.html',
+    styleUrls: ['./groupAdd.component.css']
 })
 
 export class GroupAddForAdministratorComponent {

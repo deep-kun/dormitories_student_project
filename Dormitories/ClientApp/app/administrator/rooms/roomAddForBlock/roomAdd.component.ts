@@ -6,7 +6,8 @@ import { Faculty } from '../../../faculty/Faculty';
 import { Block } from '../../../block/Block';
 
 @Component({
-    templateUrl: './roomAdd.component.html'
+    templateUrl: './roomAdd.component.html',
+    styleUrls: ['./roomAdd.component.css']
 })
 
 export class RoomAddForBlockAdministratorComponent {

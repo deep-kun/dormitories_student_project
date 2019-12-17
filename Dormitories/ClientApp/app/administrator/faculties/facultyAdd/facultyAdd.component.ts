@@ -4,7 +4,8 @@ import { RequestService } from '../../../../shared/request.service';
 import { Faculty } from '../../../faculty/Faculty';
 
 @Component({
-    templateUrl: './facultyAdd.component.html'
+    templateUrl: './facultyAdd.component.html',
+    styleUrls: ['./facultyAdd.component.css']
 })
 
 export class FacultyAddForAdministratorComponent {

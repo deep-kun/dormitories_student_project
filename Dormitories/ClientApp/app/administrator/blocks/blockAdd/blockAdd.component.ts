@@ -5,7 +5,8 @@ import { Block } from '../../../block/Block';
 import { Floor } from '../../../floor/Floor';
 
 @Component({
-    templateUrl: './blockAdd.component.html'
+    templateUrl: './blockAdd.component.html',
+    styleUrls: ['./blockAdd.component.css']
 })
 
 export class BlockAddForAdministratorComponent {

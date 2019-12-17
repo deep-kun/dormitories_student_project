@@ -5,7 +5,8 @@ import { Floor } from '../../../floor/Floor';
 import { Dormitory } from '../../../dormitory/Dormitory';
 
 @Component({
-    templateUrl: './floorAdd.component.html'
+    templateUrl: './floorAdd.component.html',
+    styleUrls: ['./floorAdd.component.css']
 })
 
 export class FloorAddForAdministratorComponent {
