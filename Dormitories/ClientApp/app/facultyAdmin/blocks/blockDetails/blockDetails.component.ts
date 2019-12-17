@@ -4,7 +4,8 @@ import { RequestService } from '../../../../shared/request.service';
 import { Block } from '../../../block/Block';
 
 @Component({
-    templateUrl: './blockDetails.component.html'
+    templateUrl: './blockDetails.component.html',
+    styleUrls: ['./blockDetails.component.css']
 })
 export class BlockDetailsForFacultyAdministratorComponent {
     private block: Block;

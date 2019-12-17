@@ -4,7 +4,9 @@ import { RequestService } from '../../../../shared/request.service';
 import { Room } from '../../../room/Room';
 
 @Component({
-    templateUrl: './roomDetails.component.html'
+    templateUrl: './roomDetails.component.html',
+    styleUrls: ['./roomDetails.component.css']
+
 })
 export class RoomDetailsForFacultyAdministratorComponent {
     private room: Room;

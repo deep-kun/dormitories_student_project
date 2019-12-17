@@ -4,7 +4,8 @@ import { RequestService } from '../../../shared/request.service';
 import { Student } from '../../student/Student';
 
 @Component({
-    templateUrl: './students.component.html'
+    templateUrl: './students.component.html',
+    styleUrls: ['./students.component.css']
 })
 export class StudentsForFacultyAdministratorComponent {
     private students: Student[];
