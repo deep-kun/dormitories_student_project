@@ -1,96 +1,99 @@
-﻿<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #002561;">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="http://www.lnu.edu.ua/">Гуртожитки ЛНУ</a>
-        </div>
+﻿<div class="coverer">
 
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <!--Навігація для неавторизованого користувача-->
-            <ul class="nav navbar-nav" *ngIf="role === 'None'">
-                <li><a href="#">Домашня сторінка</a></li>
-            </ul>
-            <!--Навігація для ролі СТУДЕНТ-->
-            <ul class="nav navbar-nav" *ngIf="role === 'Student'">
-                <li [routerLink]="['student-home/home']"><a>Домашня сторінка</a></li>
-                <li [routerLink]="['student-home/info']"><a>Моя інформація</a></li>
-            </ul>
-            <!--Навігація для ролі Administrator-->
-            <ul class="nav navbar-nav" *ngIf="role === 'Administrator'">
-                <li [routerLink]="['administrator-home/home']"><a>Домашня сторінка</a></li>
-                <li [routerLink]="['administrator-home/info']"><a>Моя інформація</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Гуртожитки <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li [routerLink]="['administrator-home/dormitoryAdd']"><a>Додати гуртожиток</a></li>
-                        <li [routerLink]="['administrator-home/dormitories']"><a>Переглянути всі гуртожитки</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Категорії студентів <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li [routerLink]="['administrator-home/studentCategoryAdd']"><a>Додати категорію студентів</a></li>
-                        <li [routerLink]="['administrator-home/studentCategories']"><a>Переглянути всі категорії студентів</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Факультети<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li [routerLink]="['administrator-home/facultyAdd']"><a>Додати новий факультет</a></li>
-                        <li [routerLink]="['administrator-home/faculties']"><a>Переглянути всі факультети</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Групи<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li [routerLink]="['administrator-home/groupAdd']"><a>Додати нову групу</a></li>
-                        <li [routerLink]="['administrator-home/groups']"><a>Переглянути всі групи</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Студенти<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li [routerLink]="['administrator-home/studentAdd']"><a>Додати нового студента</a></li>
-                        <li [routerLink]="['administrator-home/students']"><a>Переглянути всіх судентів</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <!--Навігація для ролі ДЕКАНАТ-->
-            <ul class="nav navbar-nav" *ngIf="role === 'FacultyAdmin'">
-                <li [routerLink]="['faculty-admin-home/home']"><a>Домашня сторінка</a></li>
-                <li [routerLink]="['faculty-admin-home/info']"><a>Моя інформація</a></li>
-                <li [routerLink]="['faculty-admin-home/dormitories']"><a>Гуртожитки</a></li>
-                <li [routerLink]="['faculty-admin-home/faculties']"><a>Факультети</a></li>
-                <li [routerLink]="['faculty-admin-home/groups']"><a>Групи</a></li>
-                <li [routerLink]="['faculty-admin-home/studentCategories']"><a>Категорії студентів</a></li>
-                <li [routerLink]="['faculty-admin-home/students']"><a>Студенти</a></li>
-            </ul>
-            <!--Навігація для ролі КОМЕНДАНТ-->
-            <ul class="nav navbar-nav" *ngIf="role === 'DormitoryAdmin'">
-                <li [routerLink]="['dormitory-admin-home/home']"><a>Домашня сторінка</a></li>
-                <li [routerLink]="['dormitory-admin-home/info']"><a>Моя інформація</a></li>
-                <li [routerLink]="['dormitory-admin-home/dormitory']"><a>Мій гуртожиток</a></li>
-                <li [routerLink]="['dormitory-admin-home/faculties']"><a>Факультети</a></li>
-                <li [routerLink]="['dormitory-admin-home/groups']"><a>Групи</a></li>
-                <li [routerLink]="['dormitory-admin-home/studentCategories']"><a>Категорії студентів</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="!isLogged">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #002561;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://www.lnu.edu.ua/">Гуртожитки ЛНУ</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <!--Навігація для неавторизованого користувача-->
+                <ul class="nav navbar-nav" *ngIf="role === 'None'">
+                    <li><a href="#">Домашня сторінка</a></li>
+                </ul>
+                <!--Навігація для ролі СТУДЕНТ-->
+                <ul class="nav navbar-nav" *ngIf="role === 'Student'">
+                    <li [routerLink]="['student-home/home']"><a>Домашня сторінка</a></li>
+                    <li [routerLink]="['student-home/info']"><a>Моя інформація</a></li>
+                </ul>
+                <!--Навігація для ролі Administrator-->
+                <ul class="nav navbar-nav" *ngIf="role === 'Administrator'">
+                    <li [routerLink]="['administrator-home/home']"><a>Домашня сторінка</a></li>
+                    <li [routerLink]="['administrator-home/info']"><a>Моя інформація</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Гуртожитки <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li [routerLink]="['administrator-home/dormitoryAdd']"><a>Додати гуртожиток</a></li>
+                            <li [routerLink]="['administrator-home/dormitories']"><a>Переглянути всі гуртожитки</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Категорії студентів <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li [routerLink]="['administrator-home/studentCategoryAdd']"><a>Додати категорію студентів</a></li>
+                            <li [routerLink]="['administrator-home/studentCategories']"><a>Переглянути всі категорії студентів</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Факультети<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li [routerLink]="['administrator-home/facultyAdd']"><a>Додати новий факультет</a></li>
+                            <li [routerLink]="['administrator-home/faculties']"><a>Переглянути всі факультети</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Групи<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li [routerLink]="['administrator-home/groupAdd']"><a>Додати нову групу</a></li>
+                            <li [routerLink]="['administrator-home/groups']"><a>Переглянути всі групи</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Студенти<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li [routerLink]="['administrator-home/studentAdd']"><a>Додати нового студента</a></li>
+                            <li [routerLink]="['administrator-home/students']"><a>Переглянути всіх судентів</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--Навігація для ролі ДЕКАНАТ-->
+                <ul class="nav navbar-nav" *ngIf="role === 'FacultyAdmin'">
+                    <li [routerLink]="['faculty-admin-home/home']"><a>Домашня сторінка</a></li>
+                    <li [routerLink]="['faculty-admin-home/info']"><a>Моя інформація</a></li>
+                    <li [routerLink]="['faculty-admin-home/dormitories']"><a>Гуртожитки</a></li>
+                    <li [routerLink]="['faculty-admin-home/faculties']"><a>Факультети</a></li>
+                    <li [routerLink]="['faculty-admin-home/groups']"><a>Групи</a></li>
+                    <li [routerLink]="['faculty-admin-home/studentCategories']"><a>Категорії студентів</a></li>
+                    <li [routerLink]="['faculty-admin-home/students']"><a>Студенти</a></li>
+                </ul>
+                <!--Навігація для ролі КОМЕНДАНТ-->
+                <ul class="nav navbar-nav" *ngIf="role === 'DormitoryAdmin'">
+                    <li [routerLink]="['dormitory-admin-home/home']"><a>Домашня сторінка</a></li>
+                    <li [routerLink]="['dormitory-admin-home/info']"><a>Моя інформація</a></li>
+                    <li [routerLink]="['dormitory-admin-home/dormitory']"><a>Мій гуртожиток</a></li>
+                    <li [routerLink]="['dormitory-admin-home/faculties']"><a>Факультети</a></li>
+                    <li [routerLink]="['dormitory-admin-home/groups']"><a>Групи</a></li>
+                    <li [routerLink]="['dormitory-admin-home/studentCategories']"><a>Категорії студентів</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li *ngIf="!isLogged">
                         <a [routerLink]="['../register']"><span class="glyphicon glyphicon-log-in"></span> Реєстрація</a>
                         <a [routerLink]="['../login']"><span class="glyphicon glyphicon-log-in"></span> Увійти</a>
-                </li>
-                <li *ngIf="isLogged" class="log-out">
-                    <a (click)="Logout()"><span class="glyphicon glyphicon-log-out"></span> Вийти</a>
-                </li>
-            </ul>
+                    </li>
+                    <li *ngIf="isLogged" class="log-out">
+                        <a (click)="Logout()"><span class="glyphicon glyphicon-log-out"></span> Вийти</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<div class="container" style="margin-top:70px">
-    <router-outlet></router-outlet>
+    <div class="container" style="margin-top:70px">
+        <router-outlet></router-outlet>
+    </div>
 </div>

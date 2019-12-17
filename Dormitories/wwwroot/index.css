@@ -1,0 +1,22 @@
+﻿#div-for-background {
+    background-image: url('../dist/assets/20689 opacity.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+@media (min-width: 2048px){
+    #div-for-background{
+        background-position: center -150px;
+    }
+}
+
+@media (min-width: 2150px) {
+    #div-for-background {
+        background-position: center -220px;
+    }
+}
+
