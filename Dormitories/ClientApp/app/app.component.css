@@ -1,2 +1,7 @@
-﻿body {
+﻿.navbar-nav.navbar-right li{
+    display: flex;
+}
+
+.navbar-nav.navbar-right .log-out a{
+    cursor: pointer;
 }
