@@ -29,12 +29,13 @@ var ChangePasswordComponent = /** @class */ (function () {
             console.log(error);
         });
     };
+    var _a, _b, _c;
     ChangePasswordComponent = __decorate([
         Component({
             templateUrl: './changePassword.component.html',
             providers: [HttpClient]
         }),
-        __metadata("design:paramtypes", [HttpClient, Router, ActivatedRoute])
+        __metadata("design:paramtypes", [typeof (_a = typeof HttpClient !== "undefined" && HttpClient) === "function" ? _a : Object, typeof (_b = typeof Router !== "undefined" && Router) === "function" ? _b : Object, typeof (_c = typeof ActivatedRoute !== "undefined" && ActivatedRoute) === "function" ? _c : Object])
     ], ChangePasswordComponent);
     return ChangePasswordComponent;
 }());

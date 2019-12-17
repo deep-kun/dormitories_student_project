@@ -43,11 +43,12 @@ var FloorVisualizationDormitory8ForAdministratorComponent = /** @class */ (funct
     FloorVisualizationDormitory8ForAdministratorComponent.prototype.alertInfo = function (text) {
         alert(text);
     };
+    var _a, _b;
     FloorVisualizationDormitory8ForAdministratorComponent = __decorate([
         Component({
             templateUrl: './floorVisualization.component.html'
         }),
-        __metadata("design:paramtypes", [Router, ActivatedRoute, RequestService])
+        __metadata("design:paramtypes", [typeof (_a = typeof Router !== "undefined" && Router) === "function" ? _a : Object, typeof (_b = typeof ActivatedRoute !== "undefined" && ActivatedRoute) === "function" ? _b : Object, RequestService])
     ], FloorVisualizationDormitory8ForAdministratorComponent);
     return FloorVisualizationDormitory8ForAdministratorComponent;
 }());

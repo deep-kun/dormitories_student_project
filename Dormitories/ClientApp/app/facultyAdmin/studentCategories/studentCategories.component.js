@@ -23,11 +23,12 @@ var StudentCategoriesForFacultyAdministratorComponent = /** @class */ (function 
             console.log(error);
         });
     }
+    var _a, _b;
     StudentCategoriesForFacultyAdministratorComponent = __decorate([
         Component({
             templateUrl: '/studentCategories.component.html'
         }),
-        __metadata("design:paramtypes", [Router, ActivatedRoute, RequestService])
+        __metadata("design:paramtypes", [typeof (_a = typeof Router !== "undefined" && Router) === "function" ? _a : Object, typeof (_b = typeof ActivatedRoute !== "undefined" && ActivatedRoute) === "function" ? _b : Object, RequestService])
     ], StudentCategoriesForFacultyAdministratorComponent);
     return StudentCategoriesForFacultyAdministratorComponent;
 }());

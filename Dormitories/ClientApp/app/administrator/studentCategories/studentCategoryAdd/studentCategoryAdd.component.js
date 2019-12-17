@@ -27,11 +27,12 @@ var StudentCategoryAddForAdministratorComponent = /** @class */ (function () {
             console.log(error);
         });
     };
+    var _a, _b;
     StudentCategoryAddForAdministratorComponent = __decorate([
         Component({
             templateUrl: './studentCategoryAdd.component.html'
         }),
-        __metadata("design:paramtypes", [Router, ActivatedRoute, RequestService])
+        __metadata("design:paramtypes", [typeof (_a = typeof Router !== "undefined" && Router) === "function" ? _a : Object, typeof (_b = typeof ActivatedRoute !== "undefined" && ActivatedRoute) === "function" ? _b : Object, RequestService])
     ], StudentCategoryAddForAdministratorComponent);
     return StudentCategoryAddForAdministratorComponent;
 }());

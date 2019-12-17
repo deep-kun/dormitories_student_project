@@ -63,9 +63,10 @@ var RequestService = /** @class */ (function () {
             console.log(error);
         });
     };
+    var _a;
     RequestService = __decorate([
         Injectable(),
-        __metadata("design:paramtypes", [HttpClient])
+        __metadata("design:paramtypes", [typeof (_a = typeof HttpClient !== "undefined" && HttpClient) === "function" ? _a : Object])
     ], RequestService);
     return RequestService;
 }());

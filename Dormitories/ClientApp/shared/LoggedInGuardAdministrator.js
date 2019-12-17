@@ -22,9 +22,10 @@ var LoggedInGuardAdministrator = /** @class */ (function () {
             return false;
         }
     };
+    var _a;
     LoggedInGuardAdministrator = __decorate([
         Injectable(),
-        __metadata("design:paramtypes", [Router])
+        __metadata("design:paramtypes", [typeof (_a = typeof Router !== "undefined" && Router) === "function" ? _a : Object])
     ], LoggedInGuardAdministrator);
     return LoggedInGuardAdministrator;
 }());

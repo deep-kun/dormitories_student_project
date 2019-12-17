@@ -24,11 +24,12 @@ var BlockDetailsForAdministratorComponent = /** @class */ (function () {
             console.log(error);
         });
     }
+    var _a, _b;
     BlockDetailsForAdministratorComponent = __decorate([
         Component({
             templateUrl: './blockDetails.component.html'
         }),
-        __metadata("design:paramtypes", [Router, ActivatedRoute, RequestService])
+        __metadata("design:paramtypes", [typeof (_a = typeof Router !== "undefined" && Router) === "function" ? _a : Object, typeof (_b = typeof ActivatedRoute !== "undefined" && ActivatedRoute) === "function" ? _b : Object, RequestService])
     ], BlockDetailsForAdministratorComponent);
     return BlockDetailsForAdministratorComponent;
 }());

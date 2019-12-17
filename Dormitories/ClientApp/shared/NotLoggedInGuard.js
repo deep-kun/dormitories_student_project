@@ -22,9 +22,10 @@ var NotLoggedInGuard = /** @class */ (function () {
             return false;
         }
     };
+    var _a;
     NotLoggedInGuard = __decorate([
         Injectable(),
-        __metadata("design:paramtypes", [Router])
+        __metadata("design:paramtypes", [typeof (_a = typeof Router !== "undefined" && Router) === "function" ? _a : Object])
     ], NotLoggedInGuard);
     return NotLoggedInGuard;
 }());

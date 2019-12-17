@@ -48,13 +48,14 @@ var LoginComponent = /** @class */ (function () {
             console.log(error);
         });
     };
+    var _a, _b;
     LoginComponent = __decorate([
         Component({
             selector: 'app',
             templateUrl: './login.component.html',
             providers: [HttpClient]
         }),
-        __metadata("design:paramtypes", [HttpClient, AppComponent, Router])
+        __metadata("design:paramtypes", [typeof (_a = typeof HttpClient !== "undefined" && HttpClient) === "function" ? _a : Object, AppComponent, typeof (_b = typeof Router !== "undefined" && Router) === "function" ? _b : Object])
     ], LoginComponent);
     return LoginComponent;
 }());
