@@ -28,13 +28,14 @@ var AppComponent = /** @class */ (function () {
         this.role = 'None';
         this.router.navigate(['/login']);
     };
+    var _a;
     AppComponent = __decorate([
         Component({
             selector: 'app',
             templateUrl: './app.component.html',
             providers: [RequestService]
         }),
-        __metadata("design:paramtypes", [Router])
+        __metadata("design:paramtypes", [typeof (_a = typeof Router !== "undefined" && Router) === "function" ? _a : Object])
     ], AppComponent);
     return AppComponent;
 }());

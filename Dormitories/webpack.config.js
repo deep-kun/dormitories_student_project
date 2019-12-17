@@ -1,55 +1,70 @@
 ﻿var path = require('path');
 var webpack = require('webpack');
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 module.exports = {
-    entry: {
-        'polyfills': './ClientApp/polyfills.ts',
-        'app': './ClientApp/main.ts'
-    },
-    output: {
-        path: path.resolve(__dirname, './wwwroot/dist'),
-        publicPath: '/dist/',
-        filename: "[name].js"       
-    },
-    resolve: {
-        extensions: ['.ts', '.js']
-    },
-    module: {
-        rules: [   
-            {
-                test: /\.ts$/, 
-                use: [
-                    {
-                        loader: 'awesome-typescript-loader',
-                        options: { configFileName: path.resolve(__dirname, 'tsconfig.json') }
-                    },
-                    'angular2-template-loader'
-                ]
-            }, {
-                test: /\.html$/,
-                loader: 'html-loader'
-            }, {
-                test: /\.css$/,
-                include: path.resolve(__dirname, 'ClientApp/app'),
-                loader: 'raw-loader'
-            }, {
-                test: /\.(png|jpe?g|gif)$/i,
-                loader: 'file-loader',
-                options: {
-                    outputPath: 'images',
-                },
+  entry: {
+    polyfills: './ClientApp/polyfills.ts',
+    app: './ClientApp/main.ts'
+  },
+  output: {
+    path: path.resolve(__dirname, './wwwroot/dist'),
+    publicPath: '/dist/',
+    filename: '[name].js'
+  },
+  resolve: {
+    extensions: ['.ts', '.js']
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        use: [
+          {
+            loader: 'awesome-typescript-loader',
+            options: {
+              configFileName: path.resolve(__dirname, 'tsconfig.json')
             }
+          },
+          'angular2-template-loader'
         ]
-    },
-    plugins: [
-        new webpack.ContextReplacementPlugin(
-            /angular(\\|\/)core/,
-            path.resolve(__dirname, 'ClientApp'), 
-            {} 
-        ),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: ['app', 'polyfills']
-        }),
-        new UglifyJSPlugin()
+      },
+      {
+        test: /\.html$/,
+        loader: 'html-loader'
+      },
+      {
+        test: /\.css$/,
+        include: path.resolve(__dirname, 'ClientApp/app'),
+        loader: 'raw-loader'
+      },
+      {
+        test: /\.(png|jpg|gif|ico|woff|woff2|ttf|svg|eot)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          path: path.resolve(__dirname, './wwwroot/dist/assets'),
+          limit: 50000,
+        }
+      }
     ]
-}
+  },
+  plugins: [
+    new webpack.ContextReplacementPlugin(
+      /angular(\\|\/)core/,
+      path.resolve(__dirname, 'ClientApp'),
+      {}
+    ),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['app', 'polyfills']
+    }),
+    new UglifyJSPlugin(),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, './ClientApp/assets'),
+        to: path.resolve(__dirname, 'wwwroot/dist/assets')
+      }
+    ])
+  ]
+};

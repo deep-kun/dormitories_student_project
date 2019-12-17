@@ -24,11 +24,12 @@ var RoomDetailsForFacultyAdministratorComponent = /** @class */ (function () {
             console.log(error);
         });
     }
+    var _a, _b;
     RoomDetailsForFacultyAdministratorComponent = __decorate([
         Component({
             templateUrl: './roomDetails.component.html'
         }),
-        __metadata("design:paramtypes", [Router, ActivatedRoute, RequestService])
+        __metadata("design:paramtypes", [typeof (_a = typeof Router !== "undefined" && Router) === "function" ? _a : Object, typeof (_b = typeof ActivatedRoute !== "undefined" && ActivatedRoute) === "function" ? _b : Object, RequestService])
     ], RoomDetailsForFacultyAdministratorComponent);
     return RoomDetailsForFacultyAdministratorComponent;
 }());

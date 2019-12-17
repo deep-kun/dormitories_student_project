@@ -30,11 +30,12 @@ var BlockVisualization3RoomsForAdministratorComponent = /** @class */ (function 
     BlockVisualization3RoomsForAdministratorComponent.prototype.alertInfo = function (text) {
         alert(text);
     };
+    var _a, _b;
     BlockVisualization3RoomsForAdministratorComponent = __decorate([
         Component({
             templateUrl: './blockVisualization3Rooms.component.html'
         }),
-        __metadata("design:paramtypes", [Router, ActivatedRoute, RequestService])
+        __metadata("design:paramtypes", [typeof (_a = typeof Router !== "undefined" && Router) === "function" ? _a : Object, typeof (_b = typeof ActivatedRoute !== "undefined" && ActivatedRoute) === "function" ? _b : Object, RequestService])
     ], BlockVisualization3RoomsForAdministratorComponent);
     return BlockVisualization3RoomsForAdministratorComponent;
 }());
