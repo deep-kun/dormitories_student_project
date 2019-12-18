@@ -5,16 +5,16 @@
     <tr>
         <th>Назва Групи</th>
         <th>Факультет</th>
-        <th></th>
-        <th></th>
+        <!--<th></th>
+        <th></th>-->
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let group of groups">
         <td class="col-md-5">{{group.name}}</td>
         <td class="col-md-5">{{group.faculty.name}}</td>
-        <td class="col-md-1"><button type="button" class="btn btn-success" [routerLink]="['../../administrator-home/groupEdit',group.id]" disabled>Редагувати</button></td>
-        <td class="col-md-1"><button type="button" (click)="delete(group.id)" class="btn btn-warning" disabled>Видалити</button></td>
+        <!--<td class="col-md-1"><button type="button" class="btn btn-success" [routerLink]="['../../administrator-home/groupEdit',group.id]" disabled>Редагувати</button></td>
+        <td class="col-md-1"><button type="button" (click)="delete(group.id)" class="btn btn-warning" disabled>Видалити</button></td>-->
     </tr>
     </tbody>
 </table>
