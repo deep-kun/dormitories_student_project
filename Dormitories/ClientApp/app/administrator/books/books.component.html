@@ -3,18 +3,24 @@
 <table class="table table-hover" *ngIf="books">
     <thead>
         <tr>
+            
+            <th>Рік</th>
+            <th>Доступна</th>
             <th>Назва</th>
             <th>Автор</th>
-            <!--<th></th>
-            <th></th>-->
+            
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let book of books">
-            <td class="col-md-5">{{book.name}}</td>
-            <td class="col-md-5">{{books.authors}}</td>
+
+            <td class="col-md-1">{{book.year}}</td>
+            <td class="col-md-1">{{book.available}}</td>
+            <td class="col-md-1">{{book.name}}</td>
+            
+            <td class="col-md-1">{{book.author.name}} {{book.author.surname}}</td>
             <!--<td class="col-md-1"><button type="button" class="btn btn-success" [routerLink]="['../../administrator-home/groupEdit',group.id]" disabled>Редагувати</button></td>
-            <td class="col-md-1"><button type="button" (click)="delete(group.id)" class="btn btn-warning" disabled>Видалити</button></td>-->
+    <td class="col-md-1"><button type="button" (click)="delete(group.id)" class="btn btn-warning" disabled>Видалити</button></td>-->
         </tr>
     </tbody>
 </table>

@@ -7,6 +7,6 @@ export class Book
     language: string;
     year: number;
     available: boolean;
-    authors: string;
+    author: Author;
 }
 

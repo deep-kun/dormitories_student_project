@@ -1,0 +1,26 @@
+﻿<h4 class="text-center">Автори</h4>
+
+<table class="table table-hover" *ngIf="authors">
+    <thead>
+        <tr>
+
+            <th>Ім'я</th>
+            <th>Прізвище</th>
+            <!--<th>Ім'я</th>-->
+            <th>Національність</th>
+            <th>Твори</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let author of authors">
+            <td class="col-md-1">{{author.name}}</td>
+            <td class="col-md-1">{{author.surname}}</td>
+            <!--<td class="col-md-1">{{author.fullname}}</td>-->
+            <td class="col-md-1">{{author.nationality}}</td>
+            <td class="col-md-1">{{author.books}}</td>
+            <!--<td class="col-md-1"><button type="button" class="btn btn-success" [routerLink]="['../../administrator-home/groupEdit',group.id]" disabled>Редагувати</button></td>
+    <td class="col-md-1"><button type="button" (click)="delete(group.id)" class="btn btn-warning" disabled>Видалити</button></td>-->
+        </tr>
+    </tbody>
+</table>

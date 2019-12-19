@@ -11,6 +11,8 @@ namespace Dormitories.Models
         public string Name { get; set; }
         public string Nationality { get; set; }
         public string Surname { get; set; }
-        public List<Book> Books { get; set; }
+        public string FullName { get; set; }
+        //public List<Book> Books { get; set; }
+        public string Books { get; set; }
     }
 }

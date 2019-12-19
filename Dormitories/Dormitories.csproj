@@ -9,10 +9,12 @@
     <None Remove="ClientApp\app\administrator\Administrator.ts" />
     <None Remove="ClientApp\app\administrator\administratorHome.component.ts" />
     <None Remove="ClientApp\app\administrator\administratorInfo\administratorInfo.component.ts" />
+    <None Remove="ClientApp\app\administrator\authors\authorAdd\authorAdd.component.ts" />
     <None Remove="ClientApp\app\administrator\blocks\blockAdd\blockAdd.component.ts" />
     <None Remove="ClientApp\app\administrator\blocks\blockDetails\blockDetails.component.ts" />
     <None Remove="ClientApp\app\administrator\blocks\blockVisualization\blockDetails.component.ts" />
     <None Remove="ClientApp\app\administrator\blocks\blockVisualization\dormitory8\2Rooms\blockVisualization2Rooms.component.ts" />
+    <None Remove="ClientApp\app\administrator\books\bookAdd\bookAdd.component.ts" />
     <None Remove="ClientApp\app\administrator\dormitories\dormitories.component.ts" />
     <None Remove="ClientApp\app\administrator\dormitories\dormitoryAdd\dormitoryAdd.component.ts" />
     <None Remove="ClientApp\app\administrator\dormitories\dormitoryDetails\dormitoryDetails.component.ts" />
@@ -101,10 +103,12 @@
     <TypeScriptCompile Include="ClientApp\app\administrator\Administrator.ts" />
     <TypeScriptCompile Include="ClientApp\app\administrator\administratorHome\administratorHome.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\administrator\administratorInfo\administratorInfo.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\authors\authorAdd\authorAdd.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\administrator\blocks\blockAdd\blockAdd.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\administrator\blocks\blockDetails\blockDetails.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\administrator\blocks\blockVisualization\dormitory8\2Rooms\blockVisualization2Rooms.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\administrator\blocks\blockVisualization\dormitory8\3Rooms\blockVisualization3Rooms.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\administrator\books\bookAdd\bookAdd.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\administrator\dormitories\dormitories.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\administrator\dormitories\dormitoryAdd\dormitoryAdd.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\administrator\dormitories\dormitoryDetails\dormitoryDetails.component.ts" />

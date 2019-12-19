@@ -1,0 +1,25 @@
+﻿<h4 class="text-center">Додати нового автора</h4>
+
+<div class="col-md-8 col-md-offset-2">
+    <form name="form" (ngSubmit)="f.form.valid && Add()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !Name.valid }">
+            <label>Ім'я *</label>
+            <input type="text" class="form-control" name="Name" minlength="3" [(ngModel)]="author.name" #Name="ngModel" required />
+            <div *ngIf="f.submitted && !Name.valid" class="help-block">Довжина імені назви має бути більша 2 символів</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !Surname.valid }">
+            <label>Прізвище *</label>
+            <input type="text" class="form-control" name="Surname" minlength="3" [(ngModel)]="author.surname" #Surname="ngModel" required />
+            <div *ngIf="f.submitted && !Surname.valid" class="help-block">Довжина прізвища має бути більша 2 символів</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !Nationality.valid }">
+            <label>Національність *</label>
+            <input type="text" class="form-control" name="Nationality" minlength="3" [(ngModel)]="author.nationality" #Nationality="ngModel" required />
+            <div *ngIf="f.submitted && !Nationality.valid" class="help-block">Довжина національності має бути більша 2 символів</div>
+        </div>
+        <div class="form-group">
+            * <label style="color: red;">- необхідне для заповнення</label><br>
+            <button class="btn btn-default">Додати</button>
+        </div>
+    </form>
+</div>
