@@ -12,6 +12,7 @@ namespace Dormitories.Models
         public string Language { get; set; }
         public int Year { get; set; }
         public bool Available { get; set; }
-        public List<Author> Authors { get; set; }
+        //public List<Author> Authors { get; set; }
+        public string Authors { get; set; }
     }
 }

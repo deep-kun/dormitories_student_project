@@ -12,12 +12,12 @@ namespace Dormitories.Controllers
     [Produces("application/json")]
     public class BookController : Controller
     {
-        // GET: api/groups
+        // GET: api/books
         [HttpGet]
-        [Route("api/groups")]
+        [Route("api/books")]
         public List<Book> GetBooks()
         {
-            Book b = new Book() { Id = 1, Available = true, Language = "English", Name = "Drecula", Year = 2000 };
+            Book b = new Book() { Id = 1, Available = true, Language = "English", Name = "Dracula", Year = 2000, Authors = "Bram Stoker" };
 
             List<Book> books = new List<Book>(new Book[] {b});
 

@@ -51,6 +51,7 @@ import { StudentCategoriesForAdministratorComponent } from './administrator/stud
 import { StudentCategoryAddForAdministratorComponent } from './administrator/studentCategories/studentCategoryAdd/studentCategoryAdd.component';
 import { FacultiesForAdministratorComponent } from './administrator/faculties/faculties.component'; 
 import { FacultyAddForAdministratorComponent } from './administrator/faculties/facultyAdd/facultyAdd.component';
+import { BooksForAdministratorComponent } from './administrator/books/books.component';
 import { GroupsForAdministratorComponent } from './administrator/groups/groups.component';
 import { GroupAddForAdministratorComponent } from './administrator/groups/groupAdd/groupAdd.component';
 import { StudentsForAdministratorComponent } from './administrator/students/students.component';
@@ -80,6 +81,7 @@ import { ChangePasswordComponent } from './user/changePassword/changePassword.co
         StudentCategoriesForAdministratorComponent, StudentCategoryAddForAdministratorComponent,
         FacultiesForAdministratorComponent, FacultyAddForAdministratorComponent,
         GroupsForAdministratorComponent, GroupAddForAdministratorComponent,
+        BooksForAdministratorComponent,
         StudentAddForAdministratorComponent, StudentsForAdministratorComponent,
         FloorAddForAdministratorComponent, FloorDetailsForAdministratorComponent, FloorVisualizationDormitory8ForAdministratorComponent,
         BlockAddForAdministratorComponent, BlockDetailsForAdministratorComponent, BlockVisualization2RoomsForAdministratorComponent, BlockVisualization3RoomsForAdministratorComponent,
@@ -144,6 +146,7 @@ import { ChangePasswordComponent } from './user/changePassword/changePassword.co
                     { path: 'blockAdd/:floorId', component: BlockAddForAdministratorComponent, canActivate: [LoggedInGuardAdministrator] },
                     { path: 'blockAdd/:floorId', component: BlockAddForAdministratorComponent, canActivate: [LoggedInGuardAdministrator] },
                     { path: 'blockDetails/:id', component: BlockDetailsForAdministratorComponent, canActivate: [LoggedInGuardAdministrator] },
+                    { path: 'books', component: BooksForAdministratorComponent, canActivate: [LoggedInGuardAdministrator] },
                     { path: 'groups', component: GroupsForAdministratorComponent, canActivate: [LoggedInGuardAdministrator] },
                     { path: 'groupAdd', component: GroupAddForAdministratorComponent, canActivate: [LoggedInGuardAdministrator] },
                     { path: 'roomAdd/floor/:floorId', component: RoomAddForFloorAdministratorComponent, canActivate: [LoggedInGuardAdministrator] },

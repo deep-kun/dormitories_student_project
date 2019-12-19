@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let books= of books">
+        <tr *ngFor="let book of books">
             <td class="col-md-5">{{book.name}}</td>
             <td class="col-md-5">{{books.authors}}</td>
             <!--<td class="col-md-1"><button type="button" class="btn btn-success" [routerLink]="['../../administrator-home/groupEdit',group.id]" disabled>Редагувати</button></td>
