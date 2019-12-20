@@ -12,16 +12,20 @@ namespace Dormitories.Controllers
     [Produces("application/json")]
     public class BookController : Controller
     {
+        BookService bookService = new BookService();
+
         // GET: api/books
         [HttpGet]
         [Route("api/books")]
         public List<Book> GetBooks()
         {
-            Book b = new Book() { Id = 1, Available = true, Language = "English", Name = "Dracula", Year = 2000, Author = new Author() { ID = 1, Name = "Bram", Surname = "Stoker", Fullname = "Bram Stoker", Nationality = "English", Books = "Dracula" } };  //"Bram Stoker Bram Stoker Bram Stoker Bram Stoker Bram Stoker Bram Stoker Bram Stoker Bram Stoker Bram Stoker Bram Stoker Bram Stoker Bram Stoker" };
+            return bookService.GetBooks();
 
-            List<Book> books = new List<Book>(new Book[] {b});
+            //Book b = new Book() { Id = 1, Available = true, Language = "English", Name = "Dracula", Year = 2000, Author = new Author() { ID = 1, Name = "Bram", Surname = "Stoker", Fullname = "Bram Stoker", Nationality = "English", Books = "Dracula" } };  //"Bram Stoker Bram Stoker Bram Stoker Bram Stoker Bram Stoker Bram Stoker Bram Stoker Bram Stoker Bram Stoker Bram Stoker Bram Stoker Bram Stoker" };
 
-            return books;
+            //List<Book> books = new List<Book>(new Book[] {b});
+
+            //return books;
         }
 
         // INSERT: api/books
@@ -29,9 +33,9 @@ namespace Dormitories.Controllers
         [Route("api/books")]
         public bool InsertBook([FromBody]Book book)
         {
+            return bookService.InsertBook(book);
 
-
-            return true;
+            //return true;
 
         }
     }

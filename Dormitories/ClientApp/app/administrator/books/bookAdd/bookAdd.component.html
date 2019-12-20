@@ -14,6 +14,11 @@
             </select>
             <div *ngIf="f.submitted && !AuthorId.valid" class="help-block">Виберіть автора із списку</div>
         </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !Language.valid }">
+            <label>Мова видання *</label>
+            <input type="text" class="form-control" name="Language" minlength="3" [(ngModel)]="book.language" #Language="ngModel" required />
+            <div *ngIf="f.submitted && !Language.valid" class="help-block">Довжина мови має бути більша 2 символів</div>
+        </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !Year.valid }">
             <label>Рік видання *</label>
             <input type="number" class="form-control" name="Year" min="1" max="2019" [(ngModel)]="book.year" #Year="ngModel" required />
