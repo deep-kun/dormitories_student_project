@@ -1,25 +1,25 @@
 ﻿import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RequestService } from '../../../../shared/request.service';
-import { Group } from '../../../group/Group';
-import { Faculty } from '../../../faculty/Faculty';
+import { Book } from '../../../book/Book';
+import { Author } from '../../../author/Author';
 
 @Component({
-    templateUrl: './groupAdd.component.html'
+    templateUrl: './bookAdd.component.html'
 })
 
-export class GroupAddForAdministratorComponent {
-    private group: Group;
-    private faculties: Faculty[];
+export class BookAddForAdministratorComponent {
+    private book: Book;
+    private authors: Author[];
 
     constructor(private router: Router, private activateRoute: ActivatedRoute, private rs: RequestService) {
-        this.group = new Group();
-        this.group.faculty = new Faculty();
+        this.book = new Book();
+        this.book.author = new Author();
 
-        this.rs.get('faculties')
+        this.rs.get('authors')
             .subscribe(
                 (data: any) => {
-                    this.faculties = data;
+                    this.authors = data;
                 },
                 error => {
                     console.log(error);
@@ -28,10 +28,10 @@ export class GroupAddForAdministratorComponent {
     }
 
     private Add() {
-        this.rs.post('groups', this.group)
+        this.rs.post('books', this.book)
             .subscribe(
                 (data: any) => {
-                    this.router.navigate(['../groups'], { relativeTo: this.activateRoute });
+                    this.router.navigate(['../books'], { relativeTo: this.activateRoute });
                 },
                 error => {
                     console.log(error);

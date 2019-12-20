@@ -16,8 +16,9 @@ namespace Dormitories.Controllers
         [Route("api/authors")]
         public List<Author> GetAuthors()
         {
-            Author a = new Author() { ID = 1, Name = "Bram", Surname = "Stoker", FullName = "Bram Stoker", Nationality = "English", Books = "Dracula" };
-            List<Author> Authors = new List<Author>(new Author[] { a });
+            Author a = new Author() { ID = 1, Name = "Bram", Surname = "Stoker", Fullname = "Bram Stoker", Nationality = "English", Books = "Dracula" };
+            Author b = new Author() { ID = 2, Name = "Brama", Surname = "Stokera", Fullname = "Brama Stokera", Nationality = "Englisha", Books = "Draculaaaa" };
+            List<Author> Authors = new List<Author>(new Author[] { a, b });
 
             return Authors;
         }

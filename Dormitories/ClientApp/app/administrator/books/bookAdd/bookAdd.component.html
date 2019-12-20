@@ -10,9 +10,14 @@
         <div class="form-group" *ngIf="authors" [ngClass]="{ 'has-error': f.submitted && !AuthorId.valid }">
             <label>Автор *</label>
             <select [(ngModel)]="book.author.id" class="form-control" name="AuthorId" #AuthorId="ngModel" required>
-                <option *ngFor="let author of authors" [attr.value]="author.id">{{author.surname}}</option>
+                <option *ngFor="let author of authors" [attr.value]="author.id">{{author.name}} {{author.surname}}</option>
             </select>
-            <div *ngIf="f.submitted && !AuthorId.valid" class="help-block">Виберіть афтора із списку</div>
+            <div *ngIf="f.submitted && !AuthorId.valid" class="help-block">Виберіть автора із списку</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !Year.valid }">
+            <label>Рік видання *</label>
+            <input type="number" class="form-control" name="Year" min="1" max="2019" [(ngModel)]="book.year" #Year="ngModel" required />
+            <div *ngIf="f.submitted && !Year.valid" class="help-block">Рік видання в межах 1-2019 рік</div>
         </div>
         <div class="form-group">
             * <label style="color: red;">- необхідне для заповнення</label><br>

@@ -10,39 +10,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RequestService } from '../../../../shared/request.service';
-import { Group } from '../../../group/Group';
-import { Faculty } from '../../../faculty/Faculty';
-var GroupAddForAdministratorComponent = /** @class */ (function () {
-    function GroupAddForAdministratorComponent(router, activateRoute, rs) {
+import { Book } from '../../../book/Book';
+import { Author } from '../../../author/Author';
+var BookAddForAdministratorComponent = /** @class */ (function () {
+    function BookAddForAdministratorComponent(router, activateRoute, rs) {
         var _this = this;
         this.router = router;
         this.activateRoute = activateRoute;
         this.rs = rs;
-        this.group = new Group();
-        this.group.faculty = new Faculty();
-        this.rs.get('faculties')
+        this.book = new Book();
+        this.book.author = new Author();
+        this.rs.get('authors')
             .subscribe(function (data) {
-            _this.faculties = data;
+            _this.authors = data;
         }, function (error) {
             console.log(error);
         });
     }
-    GroupAddForAdministratorComponent.prototype.Add = function () {
+    BookAddForAdministratorComponent.prototype.Add = function () {
         var _this = this;
-        this.rs.post('groups', this.group)
+        this.rs.post('books', this.book)
             .subscribe(function (data) {
-            _this.router.navigate(['../groups'], { relativeTo: _this.activateRoute });
+            _this.router.navigate(['../books'], { relativeTo: _this.activateRoute });
         }, function (error) {
             console.log(error);
         });
     };
-    GroupAddForAdministratorComponent = __decorate([
+    BookAddForAdministratorComponent = __decorate([
         Component({
-            templateUrl: './groupAdd.component.html'
+            templateUrl: './bookAdd.component.html'
         }),
         __metadata("design:paramtypes", [Router, ActivatedRoute, RequestService])
-    ], GroupAddForAdministratorComponent);
-    return GroupAddForAdministratorComponent;
+    ], BookAddForAdministratorComponent);
+    return BookAddForAdministratorComponent;
 }());
-export { GroupAddForAdministratorComponent };
+export { BookAddForAdministratorComponent };
 //# sourceMappingURL=bookAdd.component.js.map

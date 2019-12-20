@@ -52,6 +52,7 @@ import { StudentCategoryAddForAdministratorComponent } from './administrator/stu
 import { FacultiesForAdministratorComponent } from './administrator/faculties/faculties.component'; 
 import { FacultyAddForAdministratorComponent } from './administrator/faculties/facultyAdd/facultyAdd.component';
 import { BooksForAdministratorComponent } from './administrator/books/books.component';
+import { BookAddForAdministratorComponent } from './administrator/books/bookAdd/bookAdd.component';
 import { AuthorsForAdministratorComponent } from './administrator/authors/authors.component';
 import { AuthorAddForAdministratorComponent } from './administrator/authors/authorAdd/authorAdd.component';
 import { GroupsForAdministratorComponent } from './administrator/groups/groups.component';
@@ -83,7 +84,7 @@ import { ChangePasswordComponent } from './user/changePassword/changePassword.co
         StudentCategoriesForAdministratorComponent, StudentCategoryAddForAdministratorComponent,
         FacultiesForAdministratorComponent, FacultyAddForAdministratorComponent,
         GroupsForAdministratorComponent, GroupAddForAdministratorComponent,
-        BooksForAdministratorComponent,
+        BooksForAdministratorComponent, BookAddForAdministratorComponent,
         AuthorsForAdministratorComponent, AuthorAddForAdministratorComponent,
         StudentAddForAdministratorComponent, StudentsForAdministratorComponent,
         FloorAddForAdministratorComponent, FloorDetailsForAdministratorComponent, FloorVisualizationDormitory8ForAdministratorComponent,
@@ -152,6 +153,7 @@ import { ChangePasswordComponent } from './user/changePassword/changePassword.co
                     { path: 'authors', component: AuthorsForAdministratorComponent, canActivate: [LoggedInGuardAdministrator] },
                     { path: 'authorAdd', component: AuthorAddForAdministratorComponent, canActivate: [LoggedInGuardAdministrator] },
                     { path: 'books', component: BooksForAdministratorComponent, canActivate: [LoggedInGuardAdministrator] },
+                    { path: 'bookAdd', component: BookAddForAdministratorComponent, canActivate: [LoggedInGuardAdministrator] },
                     { path: 'groups', component: GroupsForAdministratorComponent, canActivate: [LoggedInGuardAdministrator] },
                     { path: 'groupAdd', component: GroupAddForAdministratorComponent, canActivate: [LoggedInGuardAdministrator] },
                     { path: 'roomAdd/floor/:floorId', component: RoomAddForFloorAdministratorComponent, canActivate: [LoggedInGuardAdministrator] },
